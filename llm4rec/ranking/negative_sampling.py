@@ -66,7 +66,7 @@ def annotate_negative_types(
         return annotated
     future_positive_by_user = future_positive_by_user or {}
     low_watch_by_user = (
-        low_watch_items_by_user(interactions, threshold=low_watch_threshold, allowed_splits=["train"])
+        low_watch_items_by_user(interactions, threshold=low_watch_threshold, allowed_splits=["train", "prefix"])
         if interactions is not None
         else {}
     )
@@ -74,7 +74,10 @@ def annotate_negative_types(
         annotated["item_popularity"] if "item_popularity" in annotated.columns else pd.Series(0, index=annotated.index)
     )
     popularity = pd.to_numeric(popularity_values, errors="coerce").fillna(0.0)
-    popularity_threshold = float(popularity.quantile(popularity_quantile)) if len(popularity) else 0.0
+    live_mask = (pd.to_numeric(annotated["is_injected_positive"], errors="coerce").fillna(0) <= 0
+                 if "is_injected_positive" in annotated else pd.Series(True, index=annotated.index))
+    live_popularity = popularity[live_mask]
+    popularity_threshold = float(live_popularity.quantile(popularity_quantile)) if len(live_popularity) else 0.0
 
     user_ids = annotated["user_id"].astype(str)
     item_ids = annotated["item_id"].astype(str)

@@ -31,7 +31,7 @@ def compute_final_scores(
     if mode == "retrieval_only":
         return normalize_scores(retrieval_scores)
     ranker_probs = [sigmoid(value) for value in ranker_logits]
-    if mode == "ranker_only":
+    if mode == "ranker_only" or mode.startswith("ranker_top_"):
         return ranker_probs
     normalized_retrieval = normalize_scores(retrieval_scores)
     return [

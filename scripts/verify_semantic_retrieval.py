@@ -14,6 +14,7 @@ import pandas as pd
 from llm4rec.retrieval.content_faiss import ContentFaissRetriever
 from llm4rec.retrieval.base import BaseRetriever
 from llm4rec.evaluation.metrics import ranking_metrics
+from llm4rec.datasets.captions import read_kuairec_captions
 from scripts.evaluate_completion import load_truth
 
 
@@ -26,7 +27,9 @@ def main():
             matches=[name for name in bundle.namelist() if name.endswith('/kuairec_caption_category.csv')]
             if len(matches)!=1:raise ValueError('Ambiguous/missing official caption CSV')
             raw.write_bytes(bundle.read(matches[0]))
-    captions=pd.read_csv(raw).fillna('');captions['item_id']=captions.video_id.astype(str)
+    captions,repairs=read_kuairec_captions(raw)
+    assert len(captions)==10728 and set(captions.video_id)==set(range(10728))
+    captions['item_id']=captions.video_id.astype(str)
     items=pd.read_parquet('data/processed/kuairec_strict/items.parquet')
     columns=['manual_cover_text','caption','topic_tag','first_level_category_name','second_level_category_name']
     columns=[c for c in columns if c in captions]
@@ -64,7 +67,7 @@ def main():
              candidate_recall_micro=hits/sum(map(len,truth.values())),latency_p50_ms=float(np.median(latencies)),
              **{k:float(np.mean([m[k] for m in metrics])) for k in metrics[0]})
     pd.DataFrame([row]).to_csv(out/'metrics.csv',index=False)
-    checks=dict(caption_file_sha256=hashlib.file_digest(raw.open('rb'),'sha256').hexdigest(),
+    checks=dict(caption_parser_repairs=repairs,caption_rows=len(captions),caption_file_sha256=hashlib.file_digest(raw.open('rb'),'sha256').hexdigest(),
                 caption_fields=columns,caption_coverage=coverage,normalized_embeddings=True,
                 exact_inner_product_agreement_users=5,saved_loaded_top100_match_users=5,
                 backend='faiss',model_source=json.loads((out/'model_source.json').read_text()),

@@ -126,6 +126,18 @@ def main():
                     rows.append(m)
         pd.DataFrame(rows).to_csv(out/'metrics.csv',index=False)
         print(name,rows[-1],flush=True)
+    if args.stage=='neural':
+        summaries=[]
+        for name in names:
+            model_dir=Path('models/kuairec_completion')/name
+            cfg=json.loads((model_dir/'config.json').read_text())
+            metric=json.loads((model_dir/'metrics.json').read_text())
+            summaries.append(dict(model=name,completed_epochs=cfg['epochs_completed'],best_epoch=metric['epoch'],
+                validation_auc=metric['val_auc'],train_rows=cfg['train_rows'],val_rows=cfg['val_rows'],
+                excluded_train_injection=cfg['train_excluded_injected'],excluded_val_injection=cfg['val_excluded_injected']))
+            for filename in ['config.json','metrics.json','training_history.json']:
+                (out/f'{name}_{filename}').write_text((model_dir/filename).read_text())
+        pd.DataFrame(summaries).to_csv(out/'training_summary.csv',index=False)
     (out/'audit.json').write_text(json.dumps(audit,indent=2))
 
 

@@ -34,3 +34,18 @@ The original 1,000 / 7,483 / 300,000 data scale was recovered exactly. Historica
 Remaining boundaries: no online evaluation, uncertainty intervals, full-catalog availability timestamps, production deployment, GPU validation, or paid LLM API test. The big matrix is exposure-biased and negatives are not known dislikes. The per-user protocol is retained only as a historical comparison. Neural models and optional integrations have the verification status recorded in `PROJECT_STATUS.md`. Remote publication status is separate from local verification.
 
 The MAP short-list correction does not change recorded real-data results: every main and auxiliary evaluated pool has 1,500 items and ranking lists contain 100 items. Python 3.11/3.12 regression tests were rerun after this fix. Both FastAPI health and recommendation endpoints also passed a local fixture smoke check.
+
+## Additional module acceptance requested by owner
+
+The owner requested completion of remaining KuaiRec module checks while explicitly deferring live LLM APIs and GitHub upload/CI. The initial accepted commit remains `6c9b237abe231030c00d68d78855f78797780005`.
+
+- Real neural ranking uses the existing strict temporal-prefix samples, removes 6,441 injected train rows and 2,454 injected validation rows before sampling, and fits up to 700,000/500,000 rows. Fixed log1p dense transforms are stored in model configuration; tensor batches avoid repeatedly decoding Parquet list fields.
+- Validation-only early stopping selected EmbeddingMLP epoch 1 of 3 executed, DeepFM epoch 4 of 6 executed, and DIN epoch 1 of 3 executed (maximum 10, patience 2). All full/Top50/Top100 scopes were evaluated after fitting. Cached, offline and public-serving head ordering checks pass.
+- Serving fixes: most-recent history instead of oldest history; capped history-length feature; correct head-only sorting; expanded source retrieval before seen filtering; explicit model/features locations; explicit failure on missing requested rankers; head scores describe ranker outputs.
+- All four neural retrievers completed ten epochs. The CLI learning rate is .01. The earlier three-epoch SASRec verification used .001, so the two SASRec checks are not an isolated epoch-count comparison.
+- Four prefix-safe negative-sampling strategies produced real results. Specific empty pools cannot silently substitute another pool. Candidate-recall statistics retain all original target positives. Exposure-only negatives number 12,347 versus 169,180 random negatives, which limits causal interpretation of the strategy comparison.
+- The official caption CSV contains four malformed unquoted newlines. The parser recognizes only the observed 3-field/8-field continuation pattern, preserves text and remaining fields, logs repairs, and checks all 10,728 unique IDs without dropping data.
+- Business reranking now handles NumPy/Arrow category lists. Semantic verification requires its backend and uses real similarity scores, with a persisted FAISS index rebuilt from vectors on load.
+- Docker context exclusions are supplied. This host lacks an engine/socket and refuses rootless user namespaces; actual image construction remains blocked, not passed.
+
+Current detailed evidence and final completion outcomes are in `reports/reproduction/completion/COMPLETION_REPORT.md` and `docs/PROJECT_STATUS.md`. The frozen plan and executed command log are retained separately from the older initial reproduction evidence.

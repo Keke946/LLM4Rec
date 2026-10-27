@@ -40,6 +40,8 @@ class LLM4RecRecommender:
         dataset: str | None = None,
         processed_dir: str | Path | None = None,
         retriever_dir: str | Path | None = None,
+        features_dir: str | Path | None = None,
+        ranker_root: str | Path | None = None,
     ) -> None:
         self.paths = paths
         self.embedding_model_name = embedding_model_name
@@ -48,8 +50,8 @@ class LLM4RecRecommender:
         self.dataset = dataset
         self.processed_dir = Path(processed_dir) if processed_dir else None
         self.retriever_dir = Path(retriever_dir) if retriever_dir else None
-        self.features_dir = Path(f"data/features/{dataset}") if dataset else None
-        self.ranker_root = Path(f"models/{dataset}") if dataset else None
+        self.features_dir = Path(features_dir) if features_dir else (Path(f"data/features/{dataset}") if dataset else None)
+        self.ranker_root = Path(ranker_root) if ranker_root else (Path(f"models/{dataset}") if dataset else None)
         self.processed_items: pd.DataFrame | None = None
         self.processed_interactions: pd.DataFrame | None = None
         self._retriever_cache: dict[str, BaseRetriever] = {}
@@ -170,7 +172,7 @@ class LLM4RecRecommender:
         seen = self._processed_seen_items(user_id, filter_seen_splits)
         candidate_lists = [
             self._filter_candidates(
-                self._load_processed_retriever(name).retrieve(user_id, query=query, top_k=candidate_pool_k),
+                self._load_processed_retriever(name).retrieve(user_id, query=query, top_k=candidate_pool_k + len(seen)),
                 seen,
             )
             for name in retrievers
@@ -179,6 +181,8 @@ class LLM4RecRecommender:
         merged = self._filter_candidates(merged, seen)
         candidate_pool_size = len(merged)
         ranker_bundle = self._load_processed_ranker(ranker)
+        if ranker not in {None, "", "none"} and rerank_mode != "retrieval_only" and ranker_bundle is None:
+            raise FileNotFoundError(f"Requested ranker {ranker!r} has no loadable artifact.")
         if ranker_bundle is not None and rerank_mode != "retrieval_only":
             merged = self._rerank_processed_candidates(
                 user_id,
@@ -196,14 +200,16 @@ class LLM4RecRecommender:
             counts = sorted(item_popularity.values())
             threshold = counts[int(len(counts) * 0.2)] if counts else 0
             tail_items = {item for item, count in item_popularity.items() if count <= threshold}
+            business_head_k = min(len(merged), max(100, top_k))
             ordered_ids = apply_business_reranker(
-                [candidate.item_id for candidate in merged],
+                [candidate.item_id for candidate in merged[:business_head_k]],
                 item_lookup_for_rerank,
                 item_popularity,
                 tail_items,
                 mode=reranker,
-                top_k=len(merged),
+                top_k=business_head_k,
             )
+            ordered_ids.extend(candidate.item_id for candidate in merged[business_head_k:])
             order = {item_id: idx for idx, item_id in enumerate(ordered_ids)}
             merged = sorted(merged, key=lambda candidate: order.get(candidate.item_id, len(order)))
         final_candidates = merged[:top_k]
@@ -353,7 +359,7 @@ class LLM4RecRecommender:
                         float(len(sources)),
                         float(item_popularity.get(candidate.item_id, 0)),
                         float(user_activity.get(str(user_id), 0)),
-                        float(len(history)),
+                        float(sum(item != 0 for item in padded_history)),
                     ]
                 )
             batch = {
@@ -382,7 +388,17 @@ class LLM4RecRecommender:
                     candidate.retrieval_score = candidate.score
                 candidate.ranker_score = logit
                 candidate.score = float(final_score)
-        ranked = sorted(candidates, key=lambda candidate: candidate.score, reverse=True)[:top_k]
+        if str(rerank_mode).startswith("ranker_top_"):
+            try:
+                head_k = max(1, int(str(rerank_mode).removeprefix("ranker_top_")))
+            except ValueError as exc:
+                raise ValueError(f"Invalid head rerank mode: {rerank_mode}") from exc
+            head = sorted(candidates[:head_k], key=lambda c: c.ranker_score, reverse=True)
+            ranked = [*head, *candidates[head_k:]][:top_k]
+        elif rerank_mode == "ranker_only":
+            ranked = sorted(candidates, key=lambda c: c.ranker_score, reverse=True)[:top_k]
+        else:
+            ranked = sorted(candidates, key=lambda candidate: candidate.score, reverse=True)[:top_k]
         for idx, candidate in enumerate(ranked, start=1):
             candidate.rank = idx
         return ranked

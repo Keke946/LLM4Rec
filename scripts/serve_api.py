@@ -34,6 +34,7 @@ class RecommendRequest(BaseModel):
     ranker_weight: float = 0.3
     reranker: str = "none"
     debug: bool = False
+    source_weights: dict[str, float] | None = None
 
 
 DATASET = os.getenv("LLM4REC_DATASET", "movielens")
@@ -45,6 +46,8 @@ recommender = LLM4RecRecommender(
     dataset=DATASET,
     processed_dir=PROCESSED_DIR,
     retriever_dir=RETRIEVER_DIR,
+    features_dir=os.getenv("LLM4REC_FEATURES_DIR"),
+    ranker_root=os.getenv("LLM4REC_RANKER_ROOT"),
 ) if Path(PROCESSED_DIR).exists() else LLM4RecRecommender()
 
 
@@ -72,6 +75,7 @@ def recommend(request: RecommendRequest) -> dict[str, Any]:
         ranker_weight=request.ranker_weight,
         reranker=request.reranker,
         debug=request.debug,
+        source_weights=request.source_weights,
     )
     return {"results": results}
 

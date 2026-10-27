@@ -7,6 +7,16 @@ from llm4rec.ranking.negative_sampling import sample_exposure_aware_negatives
 
 
 class CompletionGuardsTest(unittest.TestCase):
+    def test_explicit_semantic_backend_cannot_be_mislabeled_tfidf(self):
+        import sys
+        from unittest.mock import patch
+        from llm4rec.retrieval.content_faiss import ContentFaissRetriever
+        train=pd.DataFrame([dict(user_id='u',item_id='i',label=1)])
+        items=pd.DataFrame([dict(item_id='i',full_text='pets dogs')])
+        with patch.dict(sys.modules,{'sentence_transformers':None}):
+            with self.assertRaises(ImportError):
+                ContentFaissRetriever(backend='semantic').fit(train,items)
+
     def test_parquet_category_array_preserves_individual_ids(self):
         self.assertEqual(_as_list(np.array(['a','b'])),['a','b'])
         items=['a','b','c']

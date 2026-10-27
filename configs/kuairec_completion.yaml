@@ -15,6 +15,7 @@ neural_rankers:
   dense_transform: log1p
   exclude_injected_positives: true
 neural_retrievers:
+  learning_rate: 0.01 # existing training CLI default; explicitly recorded
   models: [bpr, two_tower, lightgcn, sasrec]
   epochs: 10
   embedding_dim: 32

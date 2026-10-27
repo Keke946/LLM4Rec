@@ -59,6 +59,8 @@ def main():
                     '--max_val_rows',cfg['max_val_rows'],'--sample_seed',spec['seed'],
                     '--tensor_cache','--exclude_injected_positives','--dense_transform',cfg['dense_transform']])
             run(stage,'evaluate_completion',['--stage','neural'])
+            run(stage,'verify_neural_serving',[])
+            run(stage,'verify_neural_api',[])
         elif stage=='retrievers':
             cfg=spec['neural_retrievers']
             for name in cfg['models']:
@@ -70,7 +72,7 @@ def main():
                 run(stage,'train_retriever',['--dataset','kuairec_strict','--processed_dir','data/processed/kuairec_strict',
                     '--output_dir','models/kuairec_completion/retrievers','--model',name,'--epochs',cfg['epochs'],
                     '--embedding_dim',cfg['embedding_dim'],'--batch_size',cfg['batch_size'],
-                    '--max_history_len',cfg['max_history_len'],'--device','cpu'])
+                    '--lr',cfg.get('learning_rate',.01),'--max_history_len',cfg['max_history_len'],'--device','cpu'])
             run(stage,'verify_retrievers',['--models',','.join(cfg['models']),'--epochs',cfg['epochs'],
                 '--model-dir','models/kuairec_completion/retrievers','--output-dir',out/'retrievers','--load-only'])
         elif stage=='negative':
@@ -107,6 +109,8 @@ def main():
                     status=dict(status='passed',image='llm4rec:acceptance',unit_tests=True)
                 else:status['reason']=result.stderr.strip()[:1000]
             (out/'docker_status.json').write_text(json.dumps(status,indent=2))
+    if args.stage=='all':
+        run('report','report_completion',[])
     print('Completion stage finished:',args.stage,flush=True)
 
 
