@@ -46,7 +46,9 @@ def apply_business_reranker(
 
 
 def _as_list(value: object) -> list[str]:
-    if isinstance(value, list):
+    if hasattr(value, "tolist"):
+        value = value.tolist()
+    if isinstance(value, (list, tuple, set)):
         return [str(item) for item in value if str(item)]
     if value is None:
         return []

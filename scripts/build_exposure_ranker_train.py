@@ -62,7 +62,10 @@ def main() -> None:
     train_path = input_dir / "train_rank_samples.parquet"
     if not train_path.exists():
         raise FileNotFoundError(f"Missing temporal train ranker samples: {train_path}")
-    train = pd.read_parquet(train_path).reset_index(drop=True)
+    import pyarrow.parquet as pq
+    excluded = {"history_item_indices", "retrieval_source_indices"}
+    train = pd.read_parquet(train_path, columns=[c for c in pq.read_schema(train_path).names
+                                                if c not in excluded]).reset_index(drop=True)
     interactions_path = processed_dir / "interactions.parquet"
     interactions = pd.read_parquet(interactions_path) if interactions_path.exists() else None
     temporal_meta = _load_meta(input_dir / "ranker_candidate_meta.json").get("temporal_train", {})

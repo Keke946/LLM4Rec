@@ -19,6 +19,7 @@ from torch.utils.data import DataLoader, Dataset, Subset
 from llm4rec.features import FeatureEncoders, RankingSampleDataset
 from llm4rec.ranking import RANKER_REGISTRY
 from llm4rec.ranking.base import RankerConfig
+from llm4rec.features.tensor_samples import TensorRankingDataset, TensorBatchLoader
 
 
 def main() -> None:
@@ -37,7 +38,12 @@ def main() -> None:
     parser.add_argument("--max_train_rows", type=int, default=None, help="Optional reproducible cap for fast ablations.")
     parser.add_argument("--max_val_rows", type=int, default=None, help="Optional reproducible cap for fast ablations.")
     parser.add_argument("--sample_seed", type=int, default=42)
+    parser.add_argument("--tensor_cache", action="store_true")
+    parser.add_argument("--exclude_injected_positives", action="store_true")
+    parser.add_argument("--dense_transform", choices=["none", "log1p"], default="none")
     args = parser.parse_args()
+    if args.exclude_injected_positives and not args.tensor_cache:
+        raise ValueError("Use --tensor_cache with --exclude_injected_positives.")
 
     torch.manual_seed(args.sample_seed)
     np.random.seed(args.sample_seed)
@@ -58,29 +64,34 @@ def main() -> None:
         dense_feature_dim=6,
         embedding_dim=args.embedding_dim,
         max_history_len=args.max_history_len,
+        dense_transform=args.dense_transform,
     )
     model = RANKER_REGISTRY[args.model](config).to(args.device)
 
-    train_ds = _maybe_subset(
-        RankingSampleDataset(features_dir / "train_rank_samples.parquet", args.max_history_len),
-        args.max_train_rows,
-        args.sample_seed,
-    )
-    val_ds = _maybe_subset(
-        RankingSampleDataset(features_dir / "val_rank_samples.parquet", args.max_history_len),
-        args.max_val_rows,
-        args.sample_seed + 1,
-    )
-    train_generator = torch.Generator()
-    train_generator.manual_seed(args.sample_seed)
-    train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, generator=train_generator)
-    val_loader = DataLoader(val_ds, batch_size=args.batch_size)
+    train_generator = torch.Generator().manual_seed(args.sample_seed)
+    if args.tensor_cache:
+        train_ds = TensorRankingDataset(features_dir / "train_rank_samples.parquet", args.max_history_len,
+                                        args.max_train_rows, args.sample_seed, args.exclude_injected_positives)
+        val_ds = TensorRankingDataset(features_dir / "val_rank_samples.parquet", args.max_history_len,
+                                      args.max_val_rows, args.sample_seed + 1, args.exclude_injected_positives)
+        train_loader = TensorBatchLoader(train_ds, args.batch_size, True, train_generator)
+        val_loader = TensorBatchLoader(val_ds, args.batch_size)
+    else:
+        train_ds = _maybe_subset(RankingSampleDataset(features_dir / "train_rank_samples.parquet", args.max_history_len),
+                                 args.max_train_rows, args.sample_seed)
+        val_ds = _maybe_subset(RankingSampleDataset(features_dir / "val_rank_samples.parquet", args.max_history_len),
+                               args.max_val_rows, args.sample_seed + 1)
+        train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, generator=train_generator)
+        val_loader = DataLoader(val_ds, batch_size=args.batch_size)
+    if not len(train_ds) or not len(val_ds):
+        raise ValueError("Neural ranking needs nonempty train and validation candidates.")
 
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     criterion = torch.nn.BCEWithLogitsLoss()
     best_auc = -math.inf
     best_metrics: dict[str, float | int | None] = {}
     bad_epochs = 0
+    history = []
 
     for epoch in range(1, args.epochs + 1):
         model.train()
@@ -93,6 +104,7 @@ def main() -> None:
             loss = criterion(logits, batch["label"])
             optimizer.zero_grad()
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
             optimizer.step()
             losses.append(float(loss.item()))
 
@@ -104,6 +116,8 @@ def main() -> None:
             f"val_auc={_fmt(val_metrics['val_auc'])} "
             f"val_logloss={_fmt(val_metrics['val_logloss'])}"
         )
+        history.append({"epoch": epoch, "train_loss": train_loss, **val_metrics})
+        (output_dir / "training_history.json").write_text(json.dumps(history, indent=2))
         score = val_metrics["val_auc"] if val_metrics["val_auc"] is not None else -val_metrics["val_logloss"]
         if score > best_auc:
             best_auc = float(score)
@@ -125,6 +139,16 @@ def main() -> None:
             "max_train_rows": args.max_train_rows,
             "max_val_rows": args.max_val_rows,
             "sample_seed": args.sample_seed,
+            "epochs_requested": args.epochs,
+            "epochs_completed": len(history),
+            "patience": args.patience,
+            "lr": args.lr,
+            "batch_size": args.batch_size,
+            "exclude_injected_positives": args.exclude_injected_positives,
+            "train_excluded_injected": getattr(train_ds, "excluded_injected_rows", None),
+            "val_excluded_injected": getattr(val_ds, "excluded_injected_rows", None),
+            "train_split": "train", "val_split": "val",
+            "selection_metric": "val_auc",
         }
     )
     (output_dir / "config.json").write_text(json.dumps(config_dict, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -411,6 +411,7 @@ class OfflineEvaluator:
             dense_feature_dim=int(config_raw.get("dense_feature_dim", 6)),
             embedding_dim=int(config_raw["embedding_dim"]),
             max_history_len=int(config_raw.get("max_history_len", 20)),
+            dense_transform=config_raw.get("dense_transform", "none"),
         )
         model = RANKER_REGISTRY[ranker_name](config)
         model.load_state_dict(torch.load(model_path, map_location="cpu"))
@@ -456,7 +457,7 @@ class OfflineEvaluator:
         encoders = ranker_bundle["encoders"]
         if not candidates:
             return []
-        history = _pad(self._history_indices(user_id, encoders, history_splits), config.max_history_len)
+        history = _pad(self._history_indices(user_id, encoders, history_splits)[-config.max_history_len:], config.max_history_len)
         batch_rows = {
             "user_idx": [],
             "item_idx": [],
@@ -511,7 +512,7 @@ class OfflineEvaluator:
         )
         head_k = _head_rerank_k(rerank_mode)
         if head_k is not None:
-            return _ranker_head_order(item_ids, [sigmoid(float(logit)) for logit in logits], output_k, head_k)
+            return _ranker_head_order(item_ids, [float(logit) for logit in logits], output_k, head_k)
         scored = []
         for item_id, final_score in zip(item_ids, final_scores):
             scored.append((item_id, final_score))

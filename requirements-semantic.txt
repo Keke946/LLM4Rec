@@ -1,0 +1,4 @@
+# Isolated semantic retrieval environment; does not change the pinned core.
+sentence-transformers==3.4.1
+transformers==4.48.3
+faiss-cpu==1.10.0

@@ -3,7 +3,7 @@ from __future__ import annotations
 import torch
 import torch.nn as nn
 
-from llm4rec.ranking.base import RankerConfig, masked_mean
+from llm4rec.ranking.base import RankerConfig, masked_mean, transform_dense
 
 
 class DeepFM(nn.Module):
@@ -54,7 +54,7 @@ class DeepFM(nn.Module):
                 dtype=torch.float32,
                 device=batch["user_idx"].device,
             )
-        deep_input = torch.cat([field_vectors.flatten(start_dim=1), dense_features.float()], dim=-1)
+        deep_input = torch.cat([field_vectors.flatten(start_dim=1), transform_dense(dense_features, self.config.dense_transform)], dim=-1)
         deep = self.deep(deep_input).squeeze(-1)
         return linear + fm + deep
 

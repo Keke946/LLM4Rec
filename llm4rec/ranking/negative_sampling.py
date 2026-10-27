@@ -76,29 +76,22 @@ def annotate_negative_types(
     popularity = pd.to_numeric(popularity_values, errors="coerce").fillna(0.0)
     popularity_threshold = float(popularity.quantile(popularity_quantile)) if len(popularity) else 0.0
 
-    types: list[str] = []
-    leak_mask: list[bool] = []
-    for row in annotated.to_dict(orient="records"):
-        user_id = str(row.get("user_id", ""))
-        item_id = str(row.get("item_id", ""))
-        label = _float(row.get("label", 0.0))
-        is_future_positive = item_id in future_positive_by_user.get(user_id, set())
-        leak_mask.append(bool(label <= 0 and is_future_positive))
-        if label > 0:
-            types.append("positive")
-            continue
-        if item_id in low_watch_by_user.get(user_id, set()):
-            types.append("exposed_low_watch_negative")
-            continue
-        if _float(row.get("item_popularity", 0.0)) >= popularity_threshold and popularity_threshold > 0:
-            types.append("popularity_hard_negative")
-            continue
-        if str(row.get("retrieval_source", row.get("source", ""))):
-            types.append("retrieved_hard_negative")
-            continue
-        types.append("random_negative")
-    annotated["negative_type"] = types
-    annotated["_future_positive_leak"] = leak_mask
+    user_ids = annotated["user_id"].astype(str)
+    item_ids = annotated["item_id"].astype(str)
+    labels = pd.to_numeric(annotated["label"], errors="coerce").fillna(0)
+    pairs = pd.MultiIndex.from_arrays([user_ids, item_ids])
+    low_pairs = {(user, item) for user, items in low_watch_by_user.items() for item in items}
+    future_pairs = {(user, item) for user, items in future_positive_by_user.items() for item in items}
+    low_mask = pairs.isin(low_pairs)
+    future_mask = pairs.isin(future_pairs)
+    sources = annotated.get("retrieval_source", annotated.get("source", pd.Series("", index=annotated.index)))
+    source_mask = sources.fillna("").astype(str).str.len() > 0
+    annotated["negative_type"] = np.select(
+        [labels > 0, low_mask, (popularity >= popularity_threshold) & (popularity_threshold > 0), source_mask],
+        ["positive", "exposed_low_watch_negative", "popularity_hard_negative", "retrieved_hard_negative"],
+        default="random_negative",
+    )
+    annotated["_future_positive_leak"] = (labels <= 0) & future_mask
     return annotated
 
 
@@ -150,7 +143,7 @@ def sample_exposure_aware_negatives(
     elif strategy in NEGATIVE_TYPES:
         pool = negatives[negatives["negative_type"] == strategy]
         if pool.empty:
-            pool = negatives
+            raise ValueError(f"No eligible negatives for {strategy}; refusing to substitute a different strategy.")
         sampled_negatives = _sample_pool(pool, len(positives), negatives_per_positive, seed)
     else:
         raise ValueError(f"Unknown negative sampling strategy: {strategy}")
@@ -160,6 +153,8 @@ def sample_exposure_aware_negatives(
     sampled = sampled.sort_values(["user_id", "label", "rank", "item_id"], ascending=[True, False, True, True]).reset_index(drop=True)
     stats = _sampling_stats(annotated, sampled)
     stats["strategy"] = strategy
+    stats["empty_pool_fallback"] = False
+    stats["negative_pool_semantics"] = "random within live retrieval pool; hard pools use prefix-only exposure/popularity tags"
     stats["negative_mix"] = dict(mix or DEFAULT_NEGATIVE_MIX) if strategy == "mixed_negative" else {}
     stats["excluded_future_positive_negatives"] = int(annotated["_future_positive_leak"].sum())
     if "is_injected_positive" in annotated.columns:
@@ -267,8 +262,10 @@ def _sampling_stats(input_frame: pd.DataFrame, sampled: pd.DataFrame) -> dict[st
         distribution = dict(Counter(sampled[labels <= 0]["negative_type"].astype(str)))
     else:
         distribution = {}
-    retrieved = int(sampled.get("is_retrieved_positive", pd.Series([], dtype=float)).sum()) if not sampled.empty else 0
-    injected = int(sampled.get("is_injected_positive", pd.Series([], dtype=float)).sum()) if not sampled.empty else 0
+    input_labels = pd.to_numeric(input_frame.get("label", pd.Series(dtype=float)), errors="coerce").fillna(0)
+    input_positives = int((input_labels > 0).sum())
+    retrieved = int(input_frame.get("is_retrieved_positive", pd.Series(dtype=float)).sum()) if len(input_frame) else 0
+    injected = int(input_frame.get("is_injected_positive", pd.Series(dtype=float)).sum()) if len(input_frame) else 0
     per_user = sampled.groupby("user_id") if "user_id" in sampled.columns and not sampled.empty else None
     return {
         "num_users": users,
@@ -281,8 +278,9 @@ def _sampling_stats(input_frame: pd.DataFrame, sampled: pd.DataFrame) -> dict[st
         "avg_candidates_per_user": float(len(sampled) / users) if users else 0.0,
         "avg_positives_per_user": float(positives / users) if users else 0.0,
         "avg_negatives_per_user": float(negatives / users) if users else 0.0,
-        "candidate_positive_recall": float(retrieved / positives) if positives else 0.0,
-        "positive_injection_rate": float(injected / positives) if positives else 0.0,
+        "candidate_positive_recall": float(retrieved / input_positives) if input_positives else 0.0,
+        "candidate_recall_denominator": "all input positives before exclusion and sampling",
+        "positive_injection_rate": float(injected / input_positives) if input_positives else 0.0,
         "users_with_samples": int(len(per_user)) if per_user is not None else 0,
     }
 

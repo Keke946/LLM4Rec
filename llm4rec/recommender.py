@@ -288,6 +288,7 @@ class LLM4RecRecommender:
             dense_feature_dim=int(config_raw.get("dense_feature_dim", 6)),
             embedding_dim=int(config_raw["embedding_dim"]),
             max_history_len=int(config_raw.get("max_history_len", 20)),
+            dense_transform=config_raw.get("dense_transform", "none"),
         )
         model = RANKER_REGISTRY[name](config)
         model.load_state_dict(torch.load(model_path, map_location="cpu"))
@@ -316,7 +317,7 @@ class LLM4RecRecommender:
         user_activity = self._processed_user_activity()
         if not candidates:
             return []
-        padded_history = _pad_list(history, config.max_history_len)
+        padded_history = _pad_list(history[-config.max_history_len:], config.max_history_len)
         batch_rows = {
             "user_idx": [],
             "item_idx": [],

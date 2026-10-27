@@ -3,7 +3,7 @@ from __future__ import annotations
 import torch
 import torch.nn as nn
 
-from llm4rec.ranking.base import RankerConfig, masked_mean
+from llm4rec.ranking.base import RankerConfig, masked_mean, transform_dense
 
 
 class DIN(nn.Module):
@@ -80,7 +80,7 @@ class DIN(nn.Module):
                 category_vec,
                 tag_vec,
                 source_vec,
-                dense_features.float(),
+                transform_dense(dense_features, self.config.dense_transform),
             ],
             dim=-1,
         )

@@ -19,9 +19,13 @@ def main():
     import argparse
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--models',default='exposure,metadata,content_faiss,bpr,two_tower,lightgcn,sasrec')
+    parser.add_argument('--epochs',type=int,default=3)
+    parser.add_argument('--output-dir',type=Path,default=Path('reports/reproduction/retriever_verification'))
+    parser.add_argument('--model-dir',type=Path,default=Path('models/kuairec_strict/retrievers'))
+    parser.add_argument("--load-only", action="store_true")
     args=parser.parse_args()
     processed=Path('data/processed/kuairec_strict')
-    output=Path('reports/reproduction/retriever_verification');output.mkdir(parents=True,exist_ok=True)
+    output=args.output_dir;output.mkdir(parents=True,exist_ok=True)
     interactions=pd.read_parquet(processed/'interactions.parquet')
     items=pd.read_parquet(processed/'items.parquet')
     train=interactions[interactions.split=='train']
@@ -34,14 +38,20 @@ def main():
     for name in args.models.split(','):
         kwargs={}
         if name in ['bpr','two_tower','lightgcn','sasrec']:
-            kwargs.update(epochs=3,embedding_dim=32,batch_size=1024,seed=42,device='cpu')
+            kwargs.update(epochs=args.epochs,embedding_dim=32,batch_size=1024,seed=42,device='cpu')
         if name=='two_tower':kwargs['max_history_len']=50
         if name=='sasrec':kwargs['max_seq_len']=50
+        path=args.model_dir/name
         start=time.perf_counter()
-        model=RETRIEVER_REGISTRY[name](**kwargs).fit(train,items)
-        train_seconds=time.perf_counter()-start
-        path=Path('models/kuairec_strict/retrievers')/name
-        model.save(path)
+        if args.load_only:
+            model=BaseRetriever.load(path)
+            if name in ['bpr','two_tower','lightgcn','sasrec']:
+                assert model.epochs==args.epochs
+            train_seconds=None
+        else:
+            model=RETRIEVER_REGISTRY[name](**kwargs).fit(train,items)
+            train_seconds=time.perf_counter()-start
+            model.save(path)
         restored=BaseRetriever.load(path)
         for user in sorted(truth)[:5]:
             expected=[c.item_id for c in model.retrieve(user,top_k=100)]
@@ -61,7 +71,7 @@ def main():
                  **{k:float(np.mean([m[k] for m in metrics])) for k in metrics[0]})
         rows.append(row)
         pd.DataFrame(rows).to_csv(output/'metrics.csv',index=False)
-        (output/'parameters.json').write_text(json.dumps(dict(seed=42,epochs=3,embedding_dim=32,
+        (output/'parameters.json').write_text(json.dumps(dict(seed=42,epochs=args.epochs,embedding_dim=32,
                                                             max_history_len=50,protocol='global_temporal',
                                                             model_names=args.models.split(',')),indent=2))
         print(json.dumps(row),flush=True)

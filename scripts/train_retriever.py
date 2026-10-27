@@ -100,6 +100,7 @@ def _validation_recall(retriever, val: pd.DataFrame, cutoffs: tuple[int, ...] = 
     users = 0
     max_k = max(cutoffs)
     for user_id, relevant in relevant_by_user.items():
+        relevant = relevant - retriever.train_positive_by_user.get(user_id, set())
         if not relevant:
             continue
         recs = [candidate.item_id for candidate in retriever.retrieve(user_id, top_k=max_k)]

@@ -19,9 +19,11 @@ class ContentFaissRetriever(BaseRetriever):
         model_name: str = "all-MiniLM-L6-v2",
         max_profile_items: int = 5,
         max_profile_chars: int = 1024,
+        backend: str = "auto",
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
+        self.backend_preference = backend
         self.model_name = model_name
         self.max_profile_items = max_profile_items
         self.max_profile_chars = max_profile_chars
@@ -64,6 +66,8 @@ class ContentFaissRetriever(BaseRetriever):
         self.item_texts = items["full_text"].fillna("").astype(str).tolist()
 
         try:
+            if self.backend_preference == "tfidf":
+                raise ImportError("TF-IDF explicitly requested")
             from sentence_transformers import SentenceTransformer
 
             self.embedding_model = SentenceTransformer(self.model_name)
@@ -81,6 +85,8 @@ class ContentFaissRetriever(BaseRetriever):
                 self.backend = "sentence_transformer_numpy"
             self._build_user_profile_embeddings()
         except Exception:
+            if self.backend_preference == "semantic":
+                raise
             self.vectorizer = TfidfVectorizer(max_features=50000)
             self.matrix = self.vectorizer.fit_transform(self.item_texts)
             self.backend = "tfidf"
@@ -93,8 +99,8 @@ class ContentFaissRetriever(BaseRetriever):
 
         if self.backend == "faiss":
             query_vec = self._query_embedding(str(user_id), query, query_text)
-            _, indices = self.index.search(query_vec, min(len(self.item_ids), top_k * 5))
-            scores = [(self.item_ids[idx], float(top_k * 5 - rank)) for rank, idx in enumerate(indices[0]) if idx >= 0]
+            distances, indices = self.index.search(query_vec, min(len(self.item_ids), top_k * 5))
+            scores = [(self.item_ids[idx], float(score)) for score, idx in zip(distances[0], indices[0]) if idx >= 0]
         elif self.backend == "sentence_transformer_numpy":
             query_vec = self._query_embedding(str(user_id), query, query_text)
             sims = np.dot(self.embeddings, query_vec.reshape(-1))
@@ -105,6 +111,7 @@ class ContentFaissRetriever(BaseRetriever):
             sims = cosine_similarity(query_matrix, self.matrix).reshape(-1)
             order = np.argsort(-sims)[: min(len(self.item_ids), top_k * 5)]
             scores = [(self.item_ids[idx], float(sims[idx])) for idx in order]
+        scores = sorted(scores, key=lambda pair: (-pair[1], pair[0]))
         return self._filter_seen(str(user_id), scores, top_k)
 
     def _profile_text(self, user_id: str) -> str:
@@ -163,6 +170,7 @@ class ContentFaissRetriever(BaseRetriever):
             "model_name": self.model_name,
             "max_profile_items": self.max_profile_items,
             "max_profile_chars": self.max_profile_chars,
+            "backend": self.backend_preference,
         }
 
     def _save_state(self, target: Path) -> None:
@@ -170,7 +178,7 @@ class ContentFaissRetriever(BaseRetriever):
             "model_name": self.model_name,
             "max_profile_items": self.max_profile_items,
             "max_profile_chars": self.max_profile_chars,
-            "backend": "tfidf" if self.backend == "tfidf" else "sentence_transformer_numpy",
+            "backend": self.backend,
             "item_ids": self.item_ids,
             "item_texts": self.item_texts,
             "user_profile_ids": list(self.user_profile_embeddings),
@@ -215,6 +223,10 @@ class ContentFaissRetriever(BaseRetriever):
                     user_id: profile_embeddings[index]
                     for index, user_id in enumerate(user_profile_ids[: len(profile_embeddings)])
                 }
+            if self.backend == "faiss":
+                import faiss
+                self.index = faiss.IndexFlatIP(self.embeddings.shape[1])
+                self.index.add(self.embeddings)
             if self.backend != "tfidf":
                 try:
                     from sentence_transformers import SentenceTransformer
