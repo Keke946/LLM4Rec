@@ -1,0 +1,301 @@
+{
+  "retrievers": [
+    "trend"
+  ],
+  "ranker": null,
+  "candidate_pool_k": 500,
+  "final_top_k": 10,
+  "cutoffs": [
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "filter_seen_splits": [
+    "train",
+    "val"
+  ],
+  "rerank_mode": "retrieval_only",
+  "retrieval_weight": 0.7,
+  "ranker_weight": 0.3,
+  "source_weights": {
+    "sasrec": 1.3,
+    "trend": 1.15,
+    "lightgcn": 1.1,
+    "itemcf": 1.0,
+    "bpr": 0.9,
+    "two_tower": 0.9,
+    "content_faiss": 0.8,
+    "popular": 0.7,
+    "metadata": 0.35
+  },
+  "reranker": "none",
+  "ranker_available": false,
+  "summary": {
+    "HitRate@10": 0.09321175278622088,
+    "HitRate@100": 0.6859169199594731,
+    "HitRate@20": 0.20364741641337386,
+    "HitRate@5": 0.04154002026342452,
+    "HitRate@50": 0.4083080040526849,
+    "MAP@10": 0.0028129215962718144,
+    "MRR@10": 0.021386355960824048,
+    "NDCG@10": 0.009955760192037104,
+    "NDCG@100": 0.05884313958481157,
+    "NDCG@20": 0.016943539924413213,
+    "NDCG@5": 0.007450263652021446,
+    "NDCG@50": 0.03156774726285758,
+    "Precision@10": 0.010233029381965537,
+    "Precision@100": 0.012877406281661459,
+    "Precision@20": 0.012208713272543078,
+    "Precision@5": 0.008713272543059779,
+    "Precision@50": 0.011529888551165046,
+    "Recall@10": 0.011041019922544576,
+    "Recall@100": 0.14933386022984746,
+    "Recall@20": 0.027129025125836096,
+    "Recall@5": 0.003819408963045751,
+    "Recall@50": 0.06370193649701193,
+    "CatalogCoverage": 0.017907256447948685,
+    "ItemCoverage": 134,
+    "AveragePopularity": 30.676717325227962,
+    "TailRatio": 0.0,
+    "Diversity": 0.17800405268490374,
+    "Novelty": 0.2187293211492291,
+    "avg_candidates": 494.63931104356635,
+    "latency_p50_ms": 36.28759999992326,
+    "latency_p95_ms": 48.01636000015605
+  },
+  "retrieval_only_summary": {
+    "HitRate@10": 0.09321175278622088,
+    "HitRate@100": 0.6859169199594731,
+    "HitRate@20": 0.20364741641337386,
+    "HitRate@5": 0.04154002026342452,
+    "HitRate@50": 0.4083080040526849,
+    "MAP@10": 0.0028129215962718144,
+    "MRR@10": 0.021386355960824048,
+    "NDCG@10": 0.009955760192037104,
+    "NDCG@100": 0.05884313958481157,
+    "NDCG@20": 0.016943539924413213,
+    "NDCG@5": 0.007450263652021446,
+    "NDCG@50": 0.03156774726285758,
+    "Precision@10": 0.010233029381965537,
+    "Precision@100": 0.012877406281661459,
+    "Precision@20": 0.012208713272543078,
+    "Precision@5": 0.008713272543059779,
+    "Precision@50": 0.011529888551165046,
+    "Recall@10": 0.011041019922544576,
+    "Recall@100": 0.14933386022984746,
+    "Recall@20": 0.027129025125836096,
+    "Recall@5": 0.003819408963045751,
+    "Recall@50": 0.06370193649701193,
+    "CatalogCoverage": 0.017907256447948685,
+    "ItemCoverage": 134,
+    "AveragePopularity": 30.676717325227962,
+    "TailRatio": 0.0,
+    "Diversity": 0.17800405268490374,
+    "Novelty": 0.2187293211492291,
+    "avg_candidates": 494.63931104356635,
+    "latency_p50_ms": 36.28759999992326,
+    "latency_p95_ms": 48.01636000015605
+  },
+  "retrieval_plus_rank_summary": null,
+  "business_rerank_summary": null,
+  "business_rerank_before_summary": {
+    "HitRate@10": 0.09321175278622088,
+    "HitRate@100": 0.6859169199594731,
+    "HitRate@20": 0.20364741641337386,
+    "HitRate@5": 0.04154002026342452,
+    "HitRate@50": 0.4083080040526849,
+    "MAP@10": 0.0028129215962718144,
+    "MRR@10": 0.021386355960824048,
+    "NDCG@10": 0.009955760192037104,
+    "NDCG@100": 0.05884313958481157,
+    "NDCG@20": 0.016943539924413213,
+    "NDCG@5": 0.007450263652021446,
+    "NDCG@50": 0.03156774726285758,
+    "Precision@10": 0.010233029381965537,
+    "Precision@100": 0.012877406281661459,
+    "Precision@20": 0.012208713272543078,
+    "Precision@5": 0.008713272543059779,
+    "Precision@50": 0.011529888551165046,
+    "Recall@10": 0.011041019922544576,
+    "Recall@100": 0.14933386022984746,
+    "Recall@20": 0.027129025125836096,
+    "Recall@5": 0.003819408963045751,
+    "Recall@50": 0.06370193649701193,
+    "CatalogCoverage": 0.017907256447948685,
+    "ItemCoverage": 134,
+    "AveragePopularity": 30.676717325227962,
+    "TailRatio": 0.0,
+    "Diversity": 0.17800405268490374,
+    "Novelty": 0.2187293211492291,
+    "avg_candidates": 494.63931104356635,
+    "latency_p50_ms": 36.28759999992326,
+    "latency_p95_ms": 48.01636000015605
+  },
+  "failure_cases": [
+    {
+      "user_id": "105",
+      "relevant_items": [
+        "10560",
+        "1086",
+        "1302",
+        "1546",
+        "3021",
+        "6523",
+        "6591",
+        "7745",
+        "9365"
+      ],
+      "recommended_items": [
+        "7723",
+        "10500",
+        "4758",
+        "3288",
+        "8920",
+        "6245",
+        "10519",
+        "3211",
+        "4987",
+        "3166"
+      ]
+    },
+    {
+      "user_id": "1058",
+      "relevant_items": [
+        "3053",
+        "4645",
+        "4653",
+        "7680"
+      ],
+      "recommended_items": [
+        "7723",
+        "8800",
+        "10500",
+        "4758",
+        "3288",
+        "8920",
+        "6245",
+        "10519",
+        "7820",
+        "4987"
+      ]
+    },
+    {
+      "user_id": "1092",
+      "relevant_items": [
+        "1403",
+        "1709",
+        "3265",
+        "6267",
+        "7930",
+        "7932",
+        "9142"
+      ],
+      "recommended_items": [
+        "7723",
+        "8800",
+        "10500",
+        "4758",
+        "3288",
+        "8920",
+        "6245",
+        "10519",
+        "3211",
+        "7820"
+      ]
+    },
+    {
+      "user_id": "1113",
+      "relevant_items": [
+        "1612",
+        "1774",
+        "3358",
+        "4640",
+        "4683",
+        "5876",
+        "6267",
+        "6541",
+        "7726",
+        "8049"
+      ],
+      "recommended_items": [
+        "7723",
+        "8800",
+        "4758",
+        "3288",
+        "8920",
+        "6245",
+        "10519",
+        "3211",
+        "7820",
+        "4987"
+      ]
+    },
+    {
+      "user_id": "112",
+      "relevant_items": [
+        "10266",
+        "2772",
+        "4569",
+        "826",
+        "8489"
+      ],
+      "recommended_items": [
+        "7723",
+        "8800",
+        "10500",
+        "4758",
+        "3288",
+        "8920",
+        "6245",
+        "10519",
+        "3211",
+        "7820"
+      ]
+    }
+  ],
+  "data_meta": {
+    "dataset": "kuairec",
+    "num_users": 1000,
+    "num_items": 7483,
+    "num_interactions": 300000,
+    "positive_rate": 0.32984,
+    "split_stats": {
+      "test": 30006,
+      "train": 239988,
+      "val": 30006
+    },
+    "item_fields": [
+      "item_id",
+      "title",
+      "description",
+      "categories",
+      "tags",
+      "author_id",
+      "duration",
+      "full_text"
+    ],
+    "interaction_fields": [
+      "user_id",
+      "item_id",
+      "timestamp",
+      "label",
+      "watch_ratio",
+      "impression_id",
+      "source",
+      "split"
+    ],
+    "is_subset": true,
+    "subset_info": {
+      "sample_users": 1000,
+      "max_interactions": 300000,
+      "max_interactions_strategy": "random",
+      "max_interactions_seed": 42
+    },
+    "is_sample_fallback": false,
+    "data_origin": "data\\raw\\kuairec_official\\extracted\\KuaiRec 2.0\\data",
+    "is_simulated": false,
+    "simulation_manifest": null
+  }
+}

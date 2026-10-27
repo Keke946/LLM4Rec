@@ -1,0 +1,4 @@
+INFO:__main__:Saved retriever trend to models/kuairec_strict/retrievers/trend
+INFO:__main__:Wrote 1379454 rows for split=val
+INFO:__main__:Wrote 1395247 rows for split=test
+Built candidate-level ranker samples at data/features/kuairec_strict_trend1500

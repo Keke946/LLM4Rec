@@ -1,0 +1,71 @@
+[gbdt] loading samples train_split=train val_split=val
+[gbdt] building features train_rows=700000 val_rows=500000
+[gbdt] fitting HistGradientBoostingClassifier
+[gbdt] evaluating validation split
+{
+  "config": {
+    "model": "gbdt",
+    "dataset": "kuairec",
+    "feature_columns": [
+      "retrieval_score",
+      "source_rank",
+      "inverse_source_rank",
+      "rank",
+      "inverse_rank",
+      "source_count",
+      "item_popularity",
+      "log_item_popularity",
+      "user_activity_level",
+      "log_user_activity_level",
+      "history_len",
+      "duration_bucket",
+      "category_count",
+      "tag_count",
+      "category_overlap",
+      "tag_overlap",
+      "category_jaccard",
+      "tag_jaccard",
+      "history_category_count",
+      "history_tag_count",
+      "candidate_pool_size",
+      "source_has_trend"
+    ],
+    "source_names": [
+      "trend"
+    ],
+    "exclude_injected_positives": true,
+    "max_iter": 120,
+    "learning_rate": 0.07,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 0.05,
+    "sample_seed": 42,
+    "max_train_rows": 700000,
+    "max_val_rows": 500000,
+    "train_split": "train",
+    "val_split": "val"
+  },
+  "metrics": {
+    "val_auc": 0.6672099875260273,
+    "val_logloss": 0.8746826127643675,
+    "val_HitRate@10": 0.10569105691056911,
+    "val_HitRate@100": 0.6190476190476191,
+    "val_HitRate@50": 0.41114982578397213,
+    "val_MAP@10": 0.010430977268956358,
+    "val_MRR@10": 0.03391589698209906,
+    "val_NDCG@10": 0.022702933789276927,
+    "val_NDCG@100": 0.09646163902081177,
+    "val_NDCG@50": 0.06302672496485467,
+    "val_Precision@10": 0.011498257839721237,
+    "val_Precision@100": 0.0102439024390243,
+    "val_Precision@50": 0.01119628339140526,
+    "val_Recall@10": 0.03506397138801318,
+    "val_Recall@100": 0.3241309729114606,
+    "val_Recall@50": 0.17226424691581496,
+    "train_rows": 700000,
+    "val_rows": 500000,
+    "train_split": "train",
+    "val_split": "val",
+    "train_positive_rate": 0.005514285714285715,
+    "val_positive_rate": 0.005312
+  }
+}

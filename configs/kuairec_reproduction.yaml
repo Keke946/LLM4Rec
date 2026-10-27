@@ -1,0 +1,31 @@
+# Frozen before final test evaluation; implemented by scripts/reproduce_kuairec.py.
+seed: 42
+source:
+  record: https://zenodo.org/records/18164998
+  matrix: big
+  archive_md5: 261550d472c48eff4990fb13c0e5bcf7
+subset:
+  sample_users: 1000
+  max_interactions: 300000
+  max_interactions_strategy: random
+  max_interactions_seed: 42
+label: watch_ratio >= 1.0
+protocols:
+  historical: per_user_temporal
+  strict: global_temporal
+ratios: {train: 0.8, val: 0.1, test: 0.1}
+ranker_training: {prefix_quantile_in_train: 0.8, exclude_injected_positives: true}
+retrieval:
+  ranker_candidates: [trend]
+  extra_baselines: [popular, itemcf, rrf, weighted_rrf]
+  candidate_pool_k: 1500
+  trend: {half_life_days: 2.0, category_weight: 0.4, tag_weight: 0.2, popularity_floor: 0.02, candidate_cache_k: 2000}
+  source_weights: {popular: 0.4, trend: 1.6, itemcf: 0.8}
+gbdt: {max_iter: 120, learning_rate: 0.07, max_leaf_nodes: 31, l2_regularization: 0.05}
+lambdarank: {n_estimators: 120, learning_rate: 0.05, num_leaves: 31}
+row_limits: {train: 700000, val: 500000}
+evaluation:
+  cutoffs: [5, 10, 20, 50, 100]
+  filter_seen_positive_splits: [train, val]
+  ground_truth: all eligible test positives, independent of candidates
+  rerank_scopes: [full, top50, top100]

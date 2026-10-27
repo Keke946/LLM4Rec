@@ -1,0 +1,100 @@
+{
+  "user_id": "1028",
+  "model": "Trend + GBDT Top50",
+  "items": [
+    {
+      "rank": 1,
+      "item_id": "3245",
+      "title": "video_3245",
+      "category_ids": [
+        "28"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 2,
+      "item_id": "3041",
+      "title": "video_3041",
+      "category_ids": [
+        "28"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 3,
+      "item_id": "7816",
+      "title": "video_7816",
+      "category_ids": [
+        "5"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 4,
+      "item_id": "7844",
+      "title": "video_7844",
+      "category_ids": [
+        "28"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 5,
+      "item_id": "6331",
+      "title": "video_6331",
+      "category_ids": [
+        "18",
+        "28"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 6,
+      "item_id": "3189",
+      "title": "video_3189",
+      "category_ids": [
+        "28",
+        "9"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 7,
+      "item_id": "7799",
+      "title": "video_7799",
+      "category_ids": [
+        "11",
+        "28"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 8,
+      "item_id": "1507",
+      "title": "video_1507",
+      "category_ids": [
+        "28",
+        "12"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 9,
+      "item_id": "9234",
+      "title": "video_9234",
+      "category_ids": [
+        "28"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    },
+    {
+      "rank": 10,
+      "item_id": "4798",
+      "title": "video_4798",
+      "category_ids": [
+        "28"
+      ],
+      "explanation": "Selected from local Trend candidates using the fitted GBDT head reranker."
+    }
+  ]
+}

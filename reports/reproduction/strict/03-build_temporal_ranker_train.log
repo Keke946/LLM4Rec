@@ -1,0 +1,2 @@
+INFO:__main__:Wrote 1495941 rows to data/features/kuairec_strict_trend1500/train_rank_samples.parquet
+Built temporal train ranker samples at data/features/kuairec_strict_trend1500

@@ -1,0 +1,14 @@
+......................INFO:__main__:Saved retriever popular to /tmp/tmp_7sc_qq6/retrievers/popular
+INFO:__main__:Saved retriever itemcf to /tmp/tmp_7sc_qq6/retrievers/itemcf
+INFO:__main__:Wrote 10 rows for split=train
+INFO:__main__:Wrote 8 rows for split=val
+INFO:__main__:Wrote 6 rows for split=test
+Built candidate-level ranker samples at /tmp/tmp_7sc_qq6/features
+..................
+----------------------------------------------------------------------
+Ran 40 tests in 6.276s
+
+OK
+BPR epoch 01/1: loss=0.6938
+TwoTower epoch 01/1: loss=0.8274
+LightGCN epoch 01/1: loss=0.6924

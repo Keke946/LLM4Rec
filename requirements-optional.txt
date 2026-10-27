@@ -1,0 +1,4 @@
+# Optional semantic retrieval and paid API explanations; excluded from offline tests.
+faiss-cpu>=1.9,<2
+sentence-transformers>=3,<6
+langchain-openai>=0.3,<2

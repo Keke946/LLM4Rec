@@ -1,0 +1,22 @@
+{
+  "num_users": 924,
+  "num_candidates": 20772,
+  "num_input_candidates": 1394026,
+  "num_positives": 7645,
+  "num_negatives": 13127,
+  "positive_ratio": 0.3680435201232428,
+  "negative_type_distribution": {
+    "exposed_low_watch_negative": 13127
+  },
+  "avg_candidates_per_user": 22.48051948051948,
+  "avg_positives_per_user": 8.273809523809524,
+  "avg_negatives_per_user": 14.206709956709958,
+  "candidate_positive_recall": 1.0,
+  "positive_injection_rate": 0.0,
+  "users_with_samples": 924,
+  "strategy": "exposed_low_watch_negative",
+  "negative_mix": {},
+  "excluded_future_positive_negatives": 3806,
+  "input_injected_positives": 6526,
+  "excluded_injected_positives": 6526
+}

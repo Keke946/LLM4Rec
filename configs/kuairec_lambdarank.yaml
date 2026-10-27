@@ -1,0 +1,23 @@
+dataset: kuairec
+
+paths:
+  features_dir: data/features/kuairec_trend1500_ltr
+  output_dir: models/kuairec_trend1500_ltr/lambdarank
+
+training:
+  train_split: train
+  val_split: val
+  query_col: user_id
+  label_mode: graded
+  n_estimators: 120
+  learning_rate: 0.05
+  num_leaves: 31
+  min_child_samples: 20
+  subsample: 0.9
+  colsample_bytree: 0.9
+  reg_lambda: 0.1
+  random_state: 42
+  max_train_rows: 700000
+  max_val_rows: 500000
+  eval_at: [5, 10, 20, 50, 100]
+  include_injected_positives: false

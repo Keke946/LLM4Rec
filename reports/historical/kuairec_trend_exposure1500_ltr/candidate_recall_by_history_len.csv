@@ -1,0 +1,6 @@
+history_len_bucket,positives,retrieved_positives,candidate_positive_recall
+h0,0,0,
+h1_5,0,0,
+h6_20,22,18,0.8181818181818182
+h21_50,9265,6984,0.753804641122504
+h50_plus,0,0,

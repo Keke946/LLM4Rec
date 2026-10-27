@@ -1,0 +1,128 @@
+{
+  "dataset": "kuairec",
+  "split": "test",
+  "summary": {
+    "rows": 501869,
+    "positives": 9287,
+    "retrieved_positives": 918,
+    "injected_positives": 8369,
+    "candidate_positive_recall": 0.09884785183589964,
+    "positive_injection_rate": 0.9011521481641004,
+    "split_positive_item_in_train_ratio": 0.784393607019743,
+    "split_unique_positive_items": 1836
+  },
+  "by_item_popularity": [
+    {
+      "item_popularity_bucket": "cold_0",
+      "positives": 2044,
+      "retrieved_positives": 8,
+      "candidate_positive_recall": 0.003913894324853229
+    },
+    {
+      "item_popularity_bucket": "pop_1",
+      "positives": 505,
+      "retrieved_positives": 14,
+      "candidate_positive_recall": 0.027722772277227723
+    },
+    {
+      "item_popularity_bucket": "pop_2_3",
+      "positives": 870,
+      "retrieved_positives": 12,
+      "candidate_positive_recall": 0.013793103448275862
+    },
+    {
+      "item_popularity_bucket": "pop_4_10",
+      "positives": 2480,
+      "retrieved_positives": 47,
+      "candidate_positive_recall": 0.018951612903225806
+    },
+    {
+      "item_popularity_bucket": "pop_11_30",
+      "positives": 2201,
+      "retrieved_positives": 100,
+      "candidate_positive_recall": 0.04543389368468878
+    },
+    {
+      "item_popularity_bucket": "pop_31_plus",
+      "positives": 1187,
+      "retrieved_positives": 737,
+      "candidate_positive_recall": 0.6208930075821398
+    }
+  ],
+  "by_history_len": [
+    {
+      "history_len_bucket": "h0",
+      "positives": 0,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": NaN
+    },
+    {
+      "history_len_bucket": "h1_5",
+      "positives": 0,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": NaN
+    },
+    {
+      "history_len_bucket": "h6_20",
+      "positives": 22,
+      "retrieved_positives": 2,
+      "candidate_positive_recall": 0.09090909090909091
+    },
+    {
+      "history_len_bucket": "h21_50",
+      "positives": 9265,
+      "retrieved_positives": 916,
+      "candidate_positive_recall": 0.0988667026443605
+    },
+    {
+      "history_len_bucket": "h50_plus",
+      "positives": 0,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": NaN
+    }
+  ],
+  "by_source": [
+    {
+      "source": "popular",
+      "candidate_rows": 362027,
+      "retrieved_positive_hits": 662,
+      "credited_positive_recall": 0.07128243781630236
+    },
+    {
+      "source": "lightgcn",
+      "candidate_rows": 371522,
+      "retrieved_positive_hits": 654,
+      "credited_positive_recall": 0.07042101862818995
+    },
+    {
+      "source": "sasrec",
+      "candidate_rows": 205052,
+      "retrieved_positive_hits": 599,
+      "credited_positive_recall": 0.06449876170991709
+    },
+    {
+      "source": "two_tower",
+      "candidate_rows": 359323,
+      "retrieved_positive_hits": 580,
+      "credited_positive_recall": 0.0624528911381501
+    },
+    {
+      "source": "bpr",
+      "candidate_rows": 277499,
+      "retrieved_positive_hits": 480,
+      "credited_positive_recall": 0.05168515128674491
+    },
+    {
+      "source": "itemcf",
+      "candidate_rows": 175343,
+      "retrieved_positive_hits": 291,
+      "credited_positive_recall": 0.031334122967589105
+    },
+    {
+      "source": "content_faiss",
+      "candidate_rows": 98735,
+      "retrieved_positive_hits": 190,
+      "credited_positive_recall": 0.02045870571766986
+    }
+  ]
+}

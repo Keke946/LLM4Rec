@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-27",
+  "unit_tests": 40,
+  "verified_python": [
+    "3.11.17",
+    "3.12.14"
+  ],
+  "clean_install_312": true,
+  "smoke_pipeline_311": true,
+  "smoke_pipeline_312": true,
+  "official_data_md5_verified": true,
+  "strict_and_historical_complete": true,
+  "raw_data_bundled": false,
+  "model_weights_bundled": false,
+  "credentials_bundled": false,
+  "github_repository_url": null,
+  "github_push_completed": false,
+  "remote_ci_status": "not run; upload blocked",
+  "github_blocker": "Connected account Keke946 has no accessible repositories/create-repository operation; local gh CLI is not authenticated/available.",
+  "public_release": false
+}

@@ -1,0 +1,7 @@
+Using Python 3.11.17 environment at: /workspace/scratch/7b77a26676ec/.venv
+Resolved 1 package in 8.01s
+   Building llm4rec @ file:///workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean
+      Built llm4rec @ file:///workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean
+Prepared 1 package in 170ms
+Installed 1 package in 0.78ms
+ + llm4rec==0.2.0 (from file:///workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean)

@@ -1,0 +1,45 @@
+{
+  "dataset": "kuairec",
+  "num_users": 1000,
+  "num_items": 7483,
+  "num_interactions": 300000,
+  "positive_rate": 0.32984,
+  "split_stats": {
+    "test": 30000,
+    "train": 240000,
+    "val": 30000
+  },
+  "item_fields": [
+    "item_id",
+    "title",
+    "description",
+    "categories",
+    "tags",
+    "author_id",
+    "duration",
+    "full_text"
+  ],
+  "interaction_fields": [
+    "user_id",
+    "item_id",
+    "timestamp",
+    "label",
+    "watch_ratio",
+    "impression_id",
+    "source",
+    "split"
+  ],
+  "is_subset": true,
+  "subset_info": {
+    "sample_users": 1000,
+    "max_interactions": 300000,
+    "max_interactions_strategy": "random",
+    "max_interactions_seed": 42
+  },
+  "is_sample_fallback": false,
+  "data_origin": "data/raw/kuairec_official/extracted",
+  "is_simulated": false,
+  "simulation_manifest": null,
+  "split_strategy": "global_temporal",
+  "label_definition": "watch_ratio >= 1.0"
+}

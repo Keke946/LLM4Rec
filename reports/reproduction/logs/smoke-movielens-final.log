@@ -1,0 +1,32 @@
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/prepare_dataset.py --dataset movielens --raw_dir examples/sample_data/movielens --output_dir data/processed/movielens
+Prepared movielens at data/processed/movielens
+DatasetMeta(dataset='movielens', num_users=4, num_items=6, num_interactions=16, positive_rate=0.8125, split_stats={'test': 4, 'train': 8, 'val': 4}, item_fields=['item_id', 'title', 'description', 'categories', 'tags', 'author_id', 'duration', 'full_text'], interaction_fields=['user_id', 'item_id', 'timestamp', 'label', 'watch_ratio', 'impression_id', 'source', 'split'], is_subset=True, subset_info={'max_interactions_strategy': 'temporal', 'max_interactions_seed': 42}, is_sample_fallback=False, data_origin='examples/sample_data/movielens', is_simulated=False, simulation_manifest=None, split_strategy='per_user_temporal', label_definition='dataset adapter threshold')
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/build_features.py --dataset movielens --processed_dir data/processed/movielens --output_dir data/features/movielens --max_history_len 20
+Built features for movielens: users=5 items=7 categories=7 tags=1
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/build_ranker_candidates.py --dataset movielens --processed_dir data/processed/movielens --features_dir data/features/movielens --retriever_dir models/movielens/retrievers --retrievers popular,trend,itemcf,bpr,lightgcn,two_tower,sasrec,content_faiss,metadata --candidate_pool_k 500 --max_history_len 20 --epochs 1 --batch_size 512 --embedding_dim 16
+INFO:__main__:Loaded retriever popular from models/movielens/retrievers/popular
+INFO:__main__:Loaded retriever trend from models/movielens/retrievers/trend
+INFO:__main__:Loaded retriever itemcf from models/movielens/retrievers/itemcf
+INFO:__main__:Loaded retriever bpr from models/movielens/retrievers/bpr
+INFO:__main__:Loaded retriever lightgcn from models/movielens/retrievers/lightgcn
+INFO:__main__:Loaded retriever two_tower from models/movielens/retrievers/two_tower
+INFO:__main__:Loaded retriever sasrec from models/movielens/retrievers/sasrec
+INFO:__main__:Loaded retriever content_faiss from models/movielens/retrievers/content_faiss
+INFO:__main__:Loaded retriever metadata from models/movielens/retrievers/metadata
+INFO:__main__:Wrote 24 rows for split=train to data/features/movielens/train_rank_samples.parquet
+INFO:__main__:Wrote 19 rows for split=val to data/features/movielens/val_rank_samples.parquet
+INFO:__main__:Wrote 15 rows for split=test to data/features/movielens/test_rank_samples.parquet
+Built candidate-level ranker samples at data/features/movielens
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/train_ranker.py --dataset movielens --model embedding_mlp --features_dir data/features/movielens --output_dir models/movielens/embedding_mlp --epochs 1 --batch_size 512 --embedding_dim 16 --max_history_len 20 --patience 1
+Epoch 01/1: train_loss=0.6824 val_auc=0.4667 val_logloss=0.6559
+Saved best embedding_mlp model to models/movielens/embedding_mlp
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/train_ranker.py --dataset movielens --model deepfm --features_dir data/features/movielens --output_dir models/movielens/deepfm --epochs 1 --batch_size 512 --embedding_dim 16 --max_history_len 20 --patience 1
+Epoch 01/1: train_loss=4.9807 val_auc=0.8167 val_logloss=3.1204
+Saved best deepfm model to models/movielens/deepfm
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/train_ranker.py --dataset movielens --model din --features_dir data/features/movielens --output_dir models/movielens/din --epochs 1 --batch_size 512 --embedding_dim 16 --max_history_len 20 --patience 1
+Epoch 01/1: train_loss=0.6745 val_auc=0.6000 val_logloss=0.6404
+Saved best din model to models/movielens/din
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/run_experiment_matrix.py --dataset movielens --config configs/movielens.yaml --retrievers popular,itemcf --rankers none,deepfm --rerank_modes retrieval_ranker_fusion --rerankers none --filter_seen_splits train
+Saved experiment matrix to reports/movielens
+/workspace/scratch/7b77a26676ec/.venv/bin/python scripts/diagnose_candidate_recall.py --dataset movielens --processed_dir data/processed/movielens --features_dir data/features/movielens --output_dir reports/movielens --split test
+Wrote candidate recall diagnostics to reports/movielens

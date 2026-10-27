@@ -1,0 +1,381 @@
+.EEEEEEEEEEEEEEEEEEEE
+======================================================================
+ERROR: test_data (unittest.loader._FailedTest.test_data)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_data
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_data.py", line 7, in <module>
+    from llm4rec.data import load_videos, parse_list_cell, validate_video_dataset
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_dataset_adapters (unittest.loader._FailedTest.test_dataset_adapters)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_dataset_adapters
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_dataset_adapters.py", line 8, in <module>
+    from llm4rec.datasets.movielens import MovieLensAdapter
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_evaluation_cutoffs (unittest.loader._FailedTest.test_evaluation_cutoffs)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_evaluation_cutoffs
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_evaluation_cutoffs.py", line 7, in <module>
+    from llm4rec.evaluation.evaluator import OfflineEvaluator
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_exposure_negative_sampling (unittest.loader._FailedTest.test_exposure_negative_sampling)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_exposure_negative_sampling
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_exposure_negative_sampling.py", line 5, in <module>
+    from llm4rec.ranking.negative_sampling import sample_exposure_aware_negatives
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_exposure_retriever (unittest.loader._FailedTest.test_exposure_retriever)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_exposure_retriever
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_exposure_retriever.py", line 7, in <module>
+    from llm4rec.retrieval import ExposureQualityRetriever
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_features_retrieval_ranking (unittest.loader._FailedTest.test_features_retrieval_ranking)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_features_retrieval_ranking
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_features_retrieval_ranking.py", line 6, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_gbdt_features (unittest.loader._FailedTest.test_gbdt_features)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_gbdt_features
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_gbdt_features.py", line 5, in <module>
+    from llm4rec.ranking.gbdt_features import sources_from_value
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_head_rerank (unittest.loader._FailedTest.test_head_rerank)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_head_rerank
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_head_rerank.py", line 3, in <module>
+    from llm4rec.evaluation.evaluator import _head_rerank_k, _ranker_head_order
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_history_policy (unittest.loader._FailedTest.test_history_policy)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_history_policy
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_history_policy.py", line 7, in <module>
+    from llm4rec.features import build_ranking_features
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_lambdarank (unittest.loader._FailedTest.test_lambdarank)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_lambdarank
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_lambdarank.py", line 8, in <module>
+    from llm4rec.evaluation.evaluator import OfflineEvaluator
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_metadata_retriever (unittest.loader._FailedTest.test_metadata_retriever)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_metadata_retriever
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_metadata_retriever.py", line 7, in <module>
+    from llm4rec.retrieval import MetadataRetriever
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_mind_group_split (unittest.loader._FailedTest.test_mind_group_split)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_mind_group_split
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_mind_group_split.py", line 5, in <module>
+    from llm4rec.datasets.mind import MINDAdapter
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_ranker_candidate_builder (unittest.loader._FailedTest.test_ranker_candidate_builder)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_ranker_candidate_builder
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_ranker_candidate_builder.py", line 10, in <module>
+    from llm4rec.features import build_ranking_features
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_recommender (unittest.loader._FailedTest.test_recommender)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_recommender
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_recommender.py", line 9, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_rerank_scoring (unittest.loader._FailedTest.test_rerank_scoring)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_rerank_scoring
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_rerank_scoring.py", line 3, in <module>
+    from llm4rec.scoring import compute_final_scores
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_retriever_artifacts (unittest.loader._FailedTest.test_retriever_artifacts)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_retriever_artifacts
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_retriever_artifacts.py", line 9, in <module>
+    from llm4rec.retrieval import ItemCFRetriever, PopularRetriever
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_temporal_split_no_leakage (unittest.loader._FailedTest.test_temporal_split_no_leakage)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_temporal_split_no_leakage
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_temporal_split_no_leakage.py", line 7, in <module>
+    from llm4rec.datasets.movielens import MovieLensAdapter
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_text (unittest.loader._FailedTest.test_text)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_text
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_text.py", line 3, in <module>
+    from llm4rec.text import extract_interest_tags, normalize_tags
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_trend_retriever (unittest.loader._FailedTest.test_trend_retriever)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_trend_retriever
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_trend_retriever.py", line 7, in <module>
+    from llm4rec.retrieval import TrendRetriever
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_weighted_fusion (unittest.loader._FailedTest.test_weighted_fusion)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_weighted_fusion
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/tests/test_weighted_fusion.py", line 3, in <module>
+    from llm4rec.retrieval.base import Candidate
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/__init__.py", line 4, in <module>
+    from llm4rec.recommender import LLM4RecRecommender
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/llm4rec/recommender.py", line 11, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.015s
+
+FAILED (errors=20)

@@ -1,0 +1,89 @@
+{
+  "protocol": "historical",
+  "seed": 42,
+  "python": "3.11.17 (main, Oct 14 2026, 01:05:33) [Clang 23.1.3 ]",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "packages": {
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "torch": "2.6.0+cpu",
+    "pyarrow": "19.0.1",
+    "lightgbm": "4.6.0"
+  },
+  "env": {
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "PYTHONHASHSEED": "42"
+  },
+  "artifacts": {
+    "data/processed/kuairec/interactions.parquet": {
+      "bytes": 4983382,
+      "sha256": "6879b5739a8590659b67481f4646d6dbed67c16439f9bf05611f7d564f1bb6c8"
+    },
+    "data/processed/kuairec/items.parquet": {
+      "bytes": 183987,
+      "sha256": "f1f03f76814cbae66fdfff52f88a5777de17715759fe507a032e48bcbeff6791"
+    },
+    "data/processed/kuairec/meta.json": {
+      "bytes": 920,
+      "sha256": "f371c1c2fe2aaa6e9359e6b7d0dd2c1e309e923e4dd449d5bdb42d0c0420e037"
+    },
+    "data/features/kuairec_trend1500/encoders.pkl": {
+      "bytes": 126857,
+      "sha256": "93a3c5b7fc6816fd1de052501df91a1ad7941c8c249b5872d88a3806dae3a664"
+    },
+    "data/features/kuairec_trend1500/ranker_candidate_meta.json": {
+      "bytes": 1717,
+      "sha256": "4d32f466b8496fcbef148507a5b4a85d887d738ccadc201f4b322b7a0551f553"
+    },
+    "data/features/kuairec_trend1500/test_rank_samples.parquet": {
+      "bytes": 14221776,
+      "sha256": "beee9201d78a886d2e135391d3b19499a3773905ec40bed08ad502f34df5505b"
+    },
+    "data/features/kuairec_trend1500/train_rank_samples.parquet": {
+      "bytes": 13555227,
+      "sha256": "f5836d7bc2df724b1132c5abc178fdc30f730d784d1e6f40c24d766c72f79642"
+    },
+    "data/features/kuairec_trend1500/val_rank_samples.parquet": {
+      "bytes": 14146514,
+      "sha256": "53a922edb059ee1478b7c696346ccb8753ac4bbae50665f22a23fedcc5aae628"
+    },
+    "models/kuairec_trend1500/gbdt/config.json": {
+      "bytes": 869,
+      "sha256": "4638c4050d2fcbf6b582a4665addf910c350ef2eb597968ce089a880e1e375a5"
+    },
+    "models/kuairec_trend1500/gbdt/metrics.json": {
+      "bytes": 810,
+      "sha256": "56edd7b01b8424896fe65454fa70442e09507b915402efe1d2e1bb4803f9168a"
+    },
+    "models/kuairec_trend1500/gbdt/model.pkl": {
+      "bytes": 211488,
+      "sha256": "b41dd522eb5c49feeced08e404b572297d723500c60399ec1139ca23795f81a7"
+    },
+    "models/kuairec_trend1500/lambdarank/config.json": {
+      "bytes": 1124,
+      "sha256": "167e2d4a6d010e3928fce1b0a2e398761d61f673210a319a7b9aa357327c0d36"
+    },
+    "models/kuairec_trend1500/lambdarank/feature_schema.json": {
+      "bytes": 873,
+      "sha256": "9cf96db504d5bc9211165b0015f6567e971ab2f099d32fc0e5031ab9f78cf175"
+    },
+    "models/kuairec_trend1500/lambdarank/metrics.json": {
+      "bytes": 685,
+      "sha256": "9717341a700fc1518d1d58c1bf1baa7ed98c791ba3460e90b255a333678c756a"
+    },
+    "models/kuairec_trend1500/lambdarank/metrics_val.json": {
+      "bytes": 685,
+      "sha256": "9717341a700fc1518d1d58c1bf1baa7ed98c791ba3460e90b255a333678c756a"
+    },
+    "models/kuairec_trend1500/lambdarank/model.pkl": {
+      "bytes": 437731,
+      "sha256": "2d53a23627298eb179c82a38db87fb431fae29e6863286b2b86e9190ba551ff5"
+    },
+    "models/kuairec_trend1500/lambdarank/model.txt": {
+      "bytes": 424603,
+      "sha256": "78e086dea422b6e507b05c219ca65efe020fa498ed1baea792db964d1153c127"
+    }
+  }
+}

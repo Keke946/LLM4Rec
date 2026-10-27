@@ -1,0 +1,12 @@
+experiment,not_retrieved,retrieved_but_low_rank
+gbdt_full,15,869
+gbdt_top100,15,796
+gbdt_top50,15,767
+itemcf,172,799
+lambdarank_full,15,896
+lambdarank_top100,15,832
+lambdarank_top50,15,841
+popular,194,773
+retrieval_only,15,871
+rrf_popular_trend_itemcf,22,932
+weighted_rrf_popular_trend_itemcf,15,892

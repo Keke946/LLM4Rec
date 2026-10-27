@@ -1,0 +1,65 @@
+{
+  "dataset": "kuairec",
+  "retrievers": [
+    "trend"
+  ],
+  "candidate_pool_k": 1500,
+  "retriever_top_k": 1500,
+  "source_weights": {
+    "trend": 1.6
+  },
+  "splits": {
+    "val": {
+      "rows": 1477371,
+      "positives": 9162,
+      "retrieved_positives": 7791,
+      "injected_positives": 1371,
+      "negatives": 1468209,
+      "users": 984,
+      "positive_injection_rate": 0.14963981663392273,
+      "candidate_positive_recall": 0.8503601833660773
+    },
+    "test": {
+      "rows": 1482954,
+      "positives": 9287,
+      "retrieved_positives": 6833,
+      "injected_positives": 2454,
+      "negatives": 1473667,
+      "users": 987,
+      "positive_injection_rate": 0.26424033595348334,
+      "candidate_positive_recall": 0.7357596640465166
+    },
+    "train": {
+      "rows": 1394026,
+      "positives": 14171,
+      "retrieved_positives": 7645,
+      "injected_positives": 6526,
+      "negatives": 1379855,
+      "users": 925,
+      "positive_injection_rate": 0.4605179592124762,
+      "candidate_positive_recall": 0.5394820407875238
+    }
+  },
+  "note": "Candidate-level ranker samples generated from retriever outputs; missing positives are injected as audited labels, not source tokens.",
+  "overall": {
+    "positives": 32620,
+    "retrieved_positives": 22269,
+    "injected_positives": 10351,
+    "positive_injection_rate": 0.3173206621704476,
+    "candidate_positive_recall": 0.6826793378295524
+  },
+  "temporal_train": {
+    "holdout_quantile": 0.8,
+    "cutoff_timestamp": 1596919218.2,
+    "prefix_rows": 191990,
+    "target_rows": 47998,
+    "retrievers": [
+      "trend"
+    ],
+    "candidate_pool_k": 1500,
+    "retriever_top_k": 1500,
+    "source_weights": {
+      "trend": 1.6
+    }
+  }
+}

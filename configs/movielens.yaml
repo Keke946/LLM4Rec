@@ -1,0 +1,27 @@
+dataset: movielens
+role: smoke_test
+paths:
+  raw_dir: data/raw/movielens
+  processed_dir: data/processed/movielens
+  features_dir: data/features/movielens
+  retriever_dir: models/movielens/retrievers
+  ranker_root: models/movielens
+label:
+  positive_rating_threshold: 4.0
+split:
+  strategy: per_user_temporal
+features:
+  max_history_len: 20
+retrieval:
+  retrievers: [popular, trend, itemcf, bpr, lightgcn, two_tower, sasrec, content_faiss, metadata]
+ranking:
+  rankers: [embedding_mlp, deepfm, din]
+evaluation:
+  candidate_pool_k: 500
+  cutoffs: [5, 10, 20, 50, 100]
+  final_top_k: 10
+  filter_seen_splits: [train, val]
+  rerank_mode: retrieval_ranker_fusion
+  rerankers: [none, diversity, diversity_tail]
+  retrieval_weight: 0.7
+  ranker_weight: 0.3

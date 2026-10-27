@@ -1,0 +1,14 @@
+....................INFO:__main__:Saved retriever popular to /tmp/tmpu9x25rge/retrievers/popular
+INFO:__main__:Saved retriever itemcf to /tmp/tmpu9x25rge/retrievers/itemcf
+INFO:__main__:Wrote 10 rows for split=train to /tmp/tmpu9x25rge/features/train_rank_samples.parquet
+INFO:__main__:Wrote 8 rows for split=val to /tmp/tmpu9x25rge/features/val_rank_samples.parquet
+INFO:__main__:Wrote 6 rows for split=test to /tmp/tmpu9x25rge/features/test_rank_samples.parquet
+Built candidate-level ranker samples at /tmp/tmpu9x25rge/features
+...........
+----------------------------------------------------------------------
+Ran 31 tests in 7.898s
+
+OK
+BPR epoch 01/1: loss=0.6938
+TwoTower epoch 01/1: loss=0.8274
+LightGCN epoch 01/1: loss=0.6924

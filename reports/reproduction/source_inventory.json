@@ -1,0 +1,494 @@
+[
+  {
+    "file": "llm4rec/__init__.py",
+    "lines": 6,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/config.py",
+    "lines": 47,
+    "classes": [
+      "ProjectPaths"
+    ],
+    "functions": [
+      "ensure_project_dirs"
+    ]
+  },
+  {
+    "file": "llm4rec/data.py",
+    "lines": 100,
+    "classes": [],
+    "functions": [
+      "parse_list_cell",
+      "load_videos",
+      "load_user_behavior",
+      "build_tag_binarizer",
+      "validate_video_dataset"
+    ]
+  },
+  {
+    "file": "llm4rec/datasets/__init__.py",
+    "lines": 19,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/datasets/base.py",
+    "lines": 287,
+    "classes": [
+      "DatasetMeta",
+      "BaseDatasetAdapter"
+    ],
+    "functions": [
+      "normalize_list",
+      "ensure_items_schema",
+      "ensure_interactions_schema"
+    ]
+  },
+  {
+    "file": "llm4rec/datasets/kuairec.py",
+    "lines": 164,
+    "classes": [
+      "KuaiRecAdapter"
+    ],
+    "functions": [
+      "_first_existing",
+      "_parse_timestamp",
+      "_find_col",
+      "_find_optional_col"
+    ]
+  },
+  {
+    "file": "llm4rec/datasets/mind.py",
+    "lines": 167,
+    "classes": [
+      "MINDAdapter"
+    ],
+    "functions": [
+      "_find_file",
+      "_parse_mind_time",
+      "_extract_entity_tags"
+    ]
+  },
+  {
+    "file": "llm4rec/datasets/movielens.py",
+    "lines": 75,
+    "classes": [
+      "MovieLensAdapter"
+    ],
+    "functions": [
+      "_find_file"
+    ]
+  },
+  {
+    "file": "llm4rec/evaluation/__init__.py",
+    "lines": 4,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/evaluation/evaluator.py",
+    "lines": 922,
+    "classes": [
+      "OfflineEvaluator"
+    ],
+    "functions": [
+      "_mean_metrics",
+      "_percentile",
+      "_pad",
+      "_safe_logit",
+      "sigmoid",
+      "_head_rerank_k",
+      "_ranker_head_order",
+      "_content_cross_features",
+      "_nonzero_ints",
+      "_string_values",
+      "_jaccard",
+      "save_evaluation_outputs",
+      "_write_report"
+    ]
+  },
+  {
+    "file": "llm4rec/evaluation/metrics.py",
+    "lines": 97,
+    "classes": [],
+    "functions": [
+      "ranking_metrics",
+      "catalog_coverage",
+      "item_coverage_count",
+      "average_popularity",
+      "tail_ratio",
+      "category_diversity",
+      "novelty",
+      "_ndcg",
+      "_mrr",
+      "_average_precision"
+    ]
+  },
+  {
+    "file": "llm4rec/evaluation/report.py",
+    "lines": 3,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/explainer.py",
+    "lines": 86,
+    "classes": [],
+    "functions": [
+      "template_explanation",
+      "llm_explanation",
+      "generate_explanation",
+      "reject_hallucinated_item_ids"
+    ]
+  },
+  {
+    "file": "llm4rec/features/__init__.py",
+    "lines": 4,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/features/build_features.py",
+    "lines": 200,
+    "classes": [
+      "RankingSampleDataset"
+    ],
+    "functions": [
+      "build_ranking_features",
+      "_prepare_item_features",
+      "_encode_item_lookup",
+      "_build_samples",
+      "_pad_list"
+    ]
+  },
+  {
+    "file": "llm4rec/features/candidate_writer.py",
+    "lines": 51,
+    "classes": [
+      "CandidateWriter"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/features/encoders.py",
+    "lines": 118,
+    "classes": [
+      "IDEncoder",
+      "FeatureEncoders"
+    ],
+    "functions": [
+      "default_retrieval_sources",
+      "default_retrieval_source_encoder",
+      "bucketize_duration",
+      "_as_list"
+    ]
+  },
+  {
+    "file": "llm4rec/models.py",
+    "lines": 47,
+    "classes": [
+      "CTRMLP"
+    ],
+    "functions": [
+      "binarize_tags",
+      "build_ctr_feature_matrix"
+    ]
+  },
+  {
+    "file": "llm4rec/ranking/__init__.py",
+    "lines": 13,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/ranking/base.py",
+    "lines": 23,
+    "classes": [
+      "RankerConfig"
+    ],
+    "functions": [
+      "masked_mean"
+    ]
+  },
+  {
+    "file": "llm4rec/ranking/ctr_mlp.py",
+    "lines": 36,
+    "classes": [
+      "CTRMLPRanker"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/ranking/deepfm.py",
+    "lines": 79,
+    "classes": [
+      "DeepFM"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/ranking/din.py",
+    "lines": 87,
+    "classes": [
+      "DIN"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/ranking/embedding_mlp.py",
+    "lines": 58,
+    "classes": [
+      "EmbeddingMLP"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/ranking/gbdt_features.py",
+    "lines": 143,
+    "classes": [],
+    "functions": [
+      "infer_source_names",
+      "make_gbdt_features",
+      "feature_columns",
+      "gbdt_feature_row",
+      "sources_from_value",
+      "_float",
+      "_nonzero_count"
+    ]
+  },
+  {
+    "file": "llm4rec/ranking/lambdarank.py",
+    "lines": 320,
+    "classes": [],
+    "functions": [
+      "lightgbm_available",
+      "build_feature_schema",
+      "make_lambdarank_features",
+      "_candidate_features",
+      "_numeric",
+      "_count_nonzero_column",
+      "_source_count",
+      "_source_sets",
+      "_nonzero_count",
+      "make_relevance_labels",
+      "grouped_ltr_frame",
+      "save_feature_schema",
+      "load_feature_schema",
+      "save_lambdarank_model",
+      "load_lambdarank_model",
+      "predict_lambdarank_scores",
+      "validation_ranking_metrics",
+      "_ranking_metrics",
+      "_ndcg",
+      "_mrr",
+      "_average_precision"
+    ]
+  },
+  {
+    "file": "llm4rec/ranking/negative_sampling.py",
+    "lines": 304,
+    "classes": [],
+    "functions": [
+      "positive_items_by_user",
+      "low_watch_items_by_user",
+      "annotate_negative_types",
+      "sample_exposure_aware_negatives",
+      "stats_to_markdown",
+      "_sample_mixed",
+      "_sample_pool",
+      "_sample_n",
+      "_target_negative_count",
+      "_normalize_mix",
+      "_sampling_stats",
+      "_float",
+      "_fmt"
+    ]
+  },
+  {
+    "file": "llm4rec/recommender.py",
+    "lines": 534,
+    "classes": [
+      "LLM4RecRecommender"
+    ],
+    "functions": [
+      "_pad_list"
+    ]
+  },
+  {
+    "file": "llm4rec/rerank/__init__.py",
+    "lines": 3,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/rerank/business.py",
+    "lines": 63,
+    "classes": [],
+    "functions": [
+      "apply_business_reranker",
+      "_as_list",
+      "_diversity_bonus",
+      "_category_cap_exceeded"
+    ]
+  },
+  {
+    "file": "llm4rec/retrieval/__init__.py",
+    "lines": 43,
+    "classes": [],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/retrieval/base.py",
+    "lines": 153,
+    "classes": [
+      "Candidate",
+      "BaseRetriever"
+    ],
+    "functions": [
+      "artifact_dir"
+    ]
+  },
+  {
+    "file": "llm4rec/retrieval/bpr.py",
+    "lines": 177,
+    "classes": [
+      "_BPRMF",
+      "BPRDataset",
+      "BPRMFRetriever"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/retrieval/content_faiss.py",
+    "lines": 227,
+    "classes": [
+      "ContentFaissRetriever"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/retrieval/exposure.py",
+    "lines": 114,
+    "classes": [
+      "ExposureQualityRetriever"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/retrieval/itemcf.py",
+    "lines": 54,
+    "classes": [
+      "ItemCFRetriever"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/retrieval/lightgcn.py",
+    "lines": 288,
+    "classes": [
+      "_PairwiseDataset",
+      "_LightGCN",
+      "LightGCNRetriever"
+    ],
+    "functions": [
+      "_build_norm_adj",
+      "_sparse_tensor"
+    ]
+  },
+  {
+    "file": "llm4rec/retrieval/merge.py",
+    "lines": 76,
+    "classes": [],
+    "functions": [
+      "weighted_merge",
+      "reciprocal_rank_fusion"
+    ]
+  },
+  {
+    "file": "llm4rec/retrieval/metadata.py",
+    "lines": 184,
+    "classes": [
+      "MetadataRetriever"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/retrieval/popular.py",
+    "lines": 30,
+    "classes": [
+      "PopularRetriever"
+    ],
+    "functions": []
+  },
+  {
+    "file": "llm4rec/retrieval/sampling.py",
+    "lines": 14,
+    "classes": [],
+    "functions": [
+      "sample_negative"
+    ]
+  },
+  {
+    "file": "llm4rec/retrieval/sasrec.py",
+    "lines": 266,
+    "classes": [
+      "SASRecDataset",
+      "_SASRec",
+      "SASRecRetriever"
+    ],
+    "functions": [
+      "_pad_left"
+    ]
+  },
+  {
+    "file": "llm4rec/retrieval/trend.py",
+    "lines": 234,
+    "classes": [
+      "TrendRetriever"
+    ],
+    "functions": [
+      "_chain_rankings"
+    ]
+  },
+  {
+    "file": "llm4rec/retrieval/two_tower.py",
+    "lines": 250,
+    "classes": [
+      "_TwoTower",
+      "TwoTowerDataset",
+      "TwoTowerRetriever"
+    ],
+    "functions": [
+      "_pad"
+    ]
+  },
+  {
+    "file": "llm4rec/scoring.py",
+    "lines": 40,
+    "classes": [],
+    "functions": [
+      "sigmoid",
+      "normalize_scores",
+      "compute_final_scores"
+    ]
+  },
+  {
+    "file": "llm4rec/text.py",
+    "lines": 84,
+    "classes": [],
+    "functions": [
+      "normalize_tags",
+      "extract_interest_tags"
+    ]
+  },
+  {
+    "file": "llm4rec/validation.py",
+    "lines": 9,
+    "classes": [],
+    "functions": [
+      "validate_training_splits"
+    ]
+  }
+]

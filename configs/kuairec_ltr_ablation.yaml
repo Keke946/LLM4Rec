@@ -1,0 +1,36 @@
+dataset: kuairec
+
+paths:
+  processed_dir: data/processed/kuairec
+  features_dir: data/features/kuairec_trend1500_ltr
+  retriever_dir: models/kuairec/retrievers
+  ranker_root: models/kuairec_trend1500_ltr
+  negative_features_root: data/features/kuairec_ltr_ablation
+  negative_ranker_root: models/kuairec_ltr_ablation
+  output_dir: reports/kuairec_ltr_ablation
+
+retrieval:
+  retrievers: [trend]
+  source_weights:
+    trend: 1.6
+
+evaluation:
+  candidate_pool_k: 1500
+  final_top_k: 100
+  cutoffs: [5, 10, 20, 50, 100]
+  filter_seen_splits: [train, val]
+  retrieval_weight: 0.7
+  ranker_weight: 0.3
+
+training:
+  n_estimators: 120
+  max_train_rows: 700000
+  max_val_rows: 500000
+
+negative_sampling:
+  negatives_per_positive: 20
+  strategies:
+    - random_negative
+    - exposed_low_watch_negative
+    - retrieved_hard_negative
+    - mixed_negative

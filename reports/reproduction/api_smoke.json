@@ -1,0 +1,41 @@
+{
+  "health": {
+    "status": "ok",
+    "dataset": "movielens",
+    "processed_dir": "data/processed/movielens"
+  },
+  "recommend": {
+    "results": [
+      {
+        "item_id": "2",
+        "title": "Comedy Two",
+        "score": 0.99984,
+        "rank": 1,
+        "retrieval_sources": [
+          "popular"
+        ],
+        "explanation": "《Comedy Two》和你的兴趣描述相近，因此推荐给你。"
+      },
+      {
+        "item_id": "4",
+        "title": "Sci-Fi Four",
+        "score": 0.758645,
+        "rank": 2,
+        "retrieval_sources": [
+          "popular"
+        ],
+        "explanation": "《Sci-Fi Four》和你的兴趣描述相近，因此推荐给你。"
+      },
+      {
+        "item_id": "5",
+        "title": "Food Five",
+        "score": 0.22623,
+        "rank": 3,
+        "retrieval_sources": [
+          "popular"
+        ],
+        "explanation": "《Food Five》和你的兴趣描述相近，因此推荐给你。"
+      }
+    ]
+  }
+}

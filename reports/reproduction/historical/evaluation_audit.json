@@ -1,0 +1,64 @@
+{
+  "data_meta": {
+    "dataset": "kuairec",
+    "num_users": 1000,
+    "num_items": 7483,
+    "num_interactions": 300000,
+    "positive_rate": 0.32984,
+    "split_stats": {
+      "test": 30006,
+      "train": 239988,
+      "val": 30006
+    },
+    "item_fields": [
+      "item_id",
+      "title",
+      "description",
+      "categories",
+      "tags",
+      "author_id",
+      "duration",
+      "full_text"
+    ],
+    "interaction_fields": [
+      "user_id",
+      "item_id",
+      "timestamp",
+      "label",
+      "watch_ratio",
+      "impression_id",
+      "source",
+      "split"
+    ],
+    "is_subset": true,
+    "subset_info": {
+      "sample_users": 1000,
+      "max_interactions": 300000,
+      "max_interactions_strategy": "random",
+      "max_interactions_seed": 42
+    },
+    "is_sample_fallback": false,
+    "data_origin": "data/raw/kuairec_official/extracted",
+    "is_simulated": false,
+    "simulation_manifest": null,
+    "split_strategy": "per_user_temporal",
+    "label_definition": "watch_ratio >= 1.0"
+  },
+  "raw_positive_test_users": 987,
+  "eligible_test_users": 987,
+  "raw_positive_pairs": 9425,
+  "eligible_positive_pairs": 9287,
+  "training_time_max": 1599155177,
+  "validation_time_min": 1596639268,
+  "validation_time_max": 1599247306,
+  "test_time_min": 1596703865,
+  "cached_live_top1500_match_users": 10,
+  "all_candidate_lists_unique": true,
+  "all_candidates_in_catalog": true,
+  "no_seen_positive_candidates": true,
+  "injected_rows_excluded_from_predictions": true,
+  "independent_ground_truth": true,
+  "head_rerank_preserves_recall100": true,
+  "missing_or_cold_test_users_included": true,
+  "negative_label_meaning": "Not a positive in the target window; unexposed items may be false negatives."
+}

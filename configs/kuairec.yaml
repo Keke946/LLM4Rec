@@ -1,0 +1,62 @@
+dataset: kuairec
+role: main_video_recommendation_experiment
+paths:
+  raw_dir: data/raw/kuairec
+  processed_dir: data/processed/kuairec
+  features_dir: data/features/kuairec
+  retriever_dir: models/kuairec/retrievers
+  ranker_root: models/kuairec
+label:
+  positive_watch_ratio_threshold: 1.0
+split:
+  strategy: per_user_temporal
+subset:
+  sample_users: null
+  sample_items: null
+  max_interactions: null
+features:
+  max_history_len: 50
+retrieval:
+  retrievers: [popular, trend, itemcf, bpr, lightgcn, two_tower, sasrec, content_faiss, metadata]
+  trend:
+    half_life_days: 2.0
+    category_weight: 0.4
+    tag_weight: 0.2
+    popularity_floor: 0.02
+    candidate_cache_k: 2000
+  source_weights:
+    trend: 1.6
+    sasrec: 1.1
+    lightgcn: 0.9
+    itemcf: 0.8
+    bpr: 0.7
+    two_tower: 0.7
+    content_faiss: 0.5
+    popular: 0.4
+    metadata: 0.25
+  trainable:
+    epochs: 10
+    batch_size: 1024
+    embedding_dim: 32
+ranking:
+  rankers: [embedding_mlp, deepfm, din]
+  epochs: 10
+  batch_size: 1024
+  gbdt:
+    train_split: train
+    val_split: val
+    max_iter: 80
+    learning_rate: 0.08
+    max_leaf_nodes: 31
+    l2_regularization: 0.05
+    max_train_rows: 400000
+    max_val_rows: 400000
+evaluation:
+  candidate_pool_k: 500
+  cutoffs: [5, 10, 20, 50, 100]
+  final_top_k: 10
+  filter_seen_splits: [train, val]
+  rerank_mode: retrieval_ranker_fusion
+  rerankers: [none, diversity, diversity_tail]
+  retrieval_weight: 0.7
+  ranker_weight: 0.3

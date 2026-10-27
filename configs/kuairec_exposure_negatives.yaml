@@ -1,0 +1,20 @@
+dataset: kuairec
+
+paths:
+  processed_dir: data/processed/kuairec
+  input_dir: data/features/kuairec_trend1500_ltr
+  output_dir: data/features/kuairec_ltr_ablation/mixed_negative
+  report_dir: reports/kuairec_ltr_ablation/mixed_negative
+
+negative_sampling:
+  strategy: mixed_negative
+  negatives_per_positive: 20
+  low_watch_threshold: 0.3
+  popularity_quantile: 0.8
+  future_positive_splits: [val, test]
+  include_injected_positives: false
+  mix:
+    random_negative: 0.2
+    exposed_low_watch_negative: 0.4
+    retrieved_hard_negative: 0.3
+    popularity_hard_negative: 0.1

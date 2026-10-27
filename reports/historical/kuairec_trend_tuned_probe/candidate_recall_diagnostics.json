@@ -1,0 +1,92 @@
+{
+  "dataset": "kuairec",
+  "split": "test",
+  "summary": {
+    "rows": 498166,
+    "positives": 9287,
+    "retrieved_positives": 4621,
+    "injected_positives": 4666,
+    "candidate_positive_recall": 0.4975772585334338,
+    "positive_injection_rate": 0.5024227414665662,
+    "split_positive_item_in_train_ratio": 0.784393607019743,
+    "split_unique_positive_items": 1836
+  },
+  "by_item_popularity": [
+    {
+      "item_popularity_bucket": "cold_0",
+      "positives": 2044,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": 0.0
+    },
+    {
+      "item_popularity_bucket": "pop_1",
+      "positives": 505,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": 0.0
+    },
+    {
+      "item_popularity_bucket": "pop_2_3",
+      "positives": 870,
+      "retrieved_positives": 245,
+      "candidate_positive_recall": 0.28160919540229884
+    },
+    {
+      "item_popularity_bucket": "pop_4_10",
+      "positives": 2480,
+      "retrieved_positives": 1876,
+      "candidate_positive_recall": 0.7564516129032258
+    },
+    {
+      "item_popularity_bucket": "pop_11_30",
+      "positives": 2201,
+      "retrieved_positives": 1663,
+      "candidate_positive_recall": 0.7555656519763744
+    },
+    {
+      "item_popularity_bucket": "pop_31_plus",
+      "positives": 1187,
+      "retrieved_positives": 837,
+      "candidate_positive_recall": 0.7051390058972199
+    }
+  ],
+  "by_history_len": [
+    {
+      "history_len_bucket": "h0",
+      "positives": 0,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": NaN
+    },
+    {
+      "history_len_bucket": "h1_5",
+      "positives": 0,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": NaN
+    },
+    {
+      "history_len_bucket": "h6_20",
+      "positives": 22,
+      "retrieved_positives": 12,
+      "candidate_positive_recall": 0.5454545454545454
+    },
+    {
+      "history_len_bucket": "h21_50",
+      "positives": 9265,
+      "retrieved_positives": 4609,
+      "candidate_positive_recall": 0.4974635725849973
+    },
+    {
+      "history_len_bucket": "h50_plus",
+      "positives": 0,
+      "retrieved_positives": 0,
+      "candidate_positive_recall": NaN
+    }
+  ],
+  "by_source": [
+    {
+      "source": "trend",
+      "candidate_rows": 493500,
+      "retrieved_positive_hits": 4621,
+      "credited_positive_recall": 0.4975772585334338
+    }
+  ]
+}

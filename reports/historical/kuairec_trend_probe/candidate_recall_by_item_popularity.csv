@@ -1,0 +1,7 @@
+item_popularity_bucket,positives,retrieved_positives,candidate_positive_recall
+cold_0,2044,0,0.0
+pop_1,505,0,0.0
+pop_2_3,870,119,0.1367816091954023
+pop_4_10,2480,1864,0.7516129032258064
+pop_11_30,2201,1654,0.7514766015447524
+pop_31_plus,1187,859,0.7236731255265375
