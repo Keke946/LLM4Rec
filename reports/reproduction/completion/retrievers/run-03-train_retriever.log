@@ -1,0 +1,17 @@
+LightGCN epoch 01/10: loss=0.4471
+LightGCN epoch 02/10: loss=0.3098
+LightGCN epoch 03/10: loss=0.3052
+LightGCN epoch 04/10: loss=0.2879
+LightGCN epoch 05/10: loss=0.2742
+LightGCN epoch 06/10: loss=0.2629
+LightGCN epoch 07/10: loss=0.2492
+LightGCN epoch 08/10: loss=0.2387
+LightGCN epoch 09/10: loss=0.2290
+LightGCN epoch 10/10: loss=0.2135
+{
+  "val_recall@50": 0.023321819273777782,
+  "val_recall@100": 0.03925367254900533,
+  "val_recall@200": 0.06717388794260949,
+  "val_users": 918
+}
+Saved lightgcn retriever to models/kuairec_completion/retrievers/lightgcn

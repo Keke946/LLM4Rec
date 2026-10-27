@@ -1,0 +1,11 @@
+{
+  "models": 3,
+  "users_per_model": 3,
+  "scopes": [
+    "top50",
+    "top100"
+  ],
+  "public_recommender_offline_order_match": true,
+  "full_public_recommend_match": true,
+  "uses_paid_api": false
+}

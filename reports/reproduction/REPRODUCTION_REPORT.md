@@ -1,5 +1,7 @@
 # KuaiRec repair and reproduction report
 
+This is the initial accepted baseline snapshot. Additional module acceptance and current coverage are documented in `completion/COMPLETION_REPORT.md` and `docs/PROJECT_STATUS.md`.
+
 Run date: 2026-10-27. All current measurements use the official real-data archive. Historical records are preserved separately under `reports/historical/`. No synthetic or fixture metrics are used in this report.
 
 ## Outcome

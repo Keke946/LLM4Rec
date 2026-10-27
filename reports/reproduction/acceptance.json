@@ -1,6 +1,6 @@
 {
   "date": "2026-10-27",
-  "unit_tests": 40,
+  "unit_tests": 50,
   "verified_python": [
     "3.11.17",
     "3.12.14"
@@ -17,5 +17,13 @@
   "github_push_completed": false,
   "remote_ci_status": "not run; upload blocked",
   "github_blocker": "Connected account Keke946 has no accessible repositories/create-repository operation; local gh CLI is not authenticated/available.",
-  "public_release": false
+  "public_release": false,
+  "additional_neural_rankers": 3,
+  "full_ten_epoch_retrievers": 4,
+  "repaired_negative_ablation_strategies": 4,
+  "semantic_faiss_verified": true,
+  "business_reranking_verified": true,
+  "current_scope": "KuaiRec fixed module acceptance; LLM API and GitHub deferred",
+  "docker_actual_build": false,
+  "docker_blocker": "No engine/socket; user namespaces denied"
 }

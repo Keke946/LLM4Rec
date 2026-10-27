@@ -1,0 +1,4 @@
+model,completed_epochs,best_epoch,validation_auc,train_rows,val_rows,excluded_train_injection,excluded_val_injection
+embedding_mlp,3,1,0.5746149570001913,700000,500000,6441,2454
+deepfm,6,4,0.5282553778680459,700000,500000,6441,2454
+din,3,1,0.5836608932955696,700000,500000,6441,2454

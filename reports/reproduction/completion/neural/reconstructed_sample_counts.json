@@ -1,0 +1,14 @@
+{
+  "train": {
+    "rows": 700000,
+    "positives": 3898,
+    "positive_rate": 0.005568571428571429,
+    "sample_seed": 42
+  },
+  "val": {
+    "rows": 500000,
+    "positives": 2401,
+    "positive_rate": 0.004802,
+    "sample_seed": 43
+  }
+}

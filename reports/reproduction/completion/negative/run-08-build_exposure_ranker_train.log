@@ -1,0 +1,28 @@
+{
+  "output_dir": "data/features/kuairec_completion_negatives/exposed_low_watch_negative",
+  "stats": {
+    "num_users": 991,
+    "num_candidates": 20806,
+    "num_input_candidates": 1495941,
+    "num_positives": 8459,
+    "num_negatives": 12347,
+    "positive_ratio": 0.4065654138229357,
+    "negative_type_distribution": {
+      "exposed_low_watch_negative": 12347
+    },
+    "avg_candidates_per_user": 20.994954591321896,
+    "avg_positives_per_user": 8.535822401614531,
+    "avg_negatives_per_user": 12.459132189707367,
+    "candidate_positive_recall": 0.5677181208053691,
+    "candidate_recall_denominator": "all input positives before exclusion and sampling",
+    "positive_injection_rate": 0.43228187919463085,
+    "users_with_samples": 991,
+    "strategy": "exposed_low_watch_negative",
+    "empty_pool_fallback": false,
+    "negative_pool_semantics": "random within live retrieval pool; hard pools use prefix-only exposure/popularity tags",
+    "negative_mix": {},
+    "excluded_future_positive_negatives": 0,
+    "input_injected_positives": 6441,
+    "excluded_injected_positives": 6441
+  }
+}

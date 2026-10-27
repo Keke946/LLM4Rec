@@ -1,0 +1,2 @@
+RUN ['/workspace/scratch/7b77a26676ec/.venv-semantic/bin/python', '-u', 'scripts/verify_semantic_retrieval.py']
+Completion stage finished: semantic

@@ -1,6 +1,6 @@
 # LLM4Rec delivery
 
-Read README.md for setup, docs/ACCEPTANCE_CN.md for acceptance, docs/REPRODUCE.md for complete commands, and reports/reproduction/REPRODUCTION_REPORT.md for current real-data results.
+Read README.md for setup, docs/ACCEPTANCE_CN.md for acceptance, docs/REPRODUCE.md for complete commands, and reports/reproduction/completion/COMPLETION_REPORT.md for latest module acceptance, plus reports/reproduction/REPRODUCTION_REPORT.md for the preserved initial baseline.
 
 The delivery contains source, fixtures, pinned requirements, regression tests, current/historical evidence, a portable Git bundle and a private-upload helper. Large public raw data, processed features, weights, credentials and caches are excluded. Regenerate them with the documented commands.
 

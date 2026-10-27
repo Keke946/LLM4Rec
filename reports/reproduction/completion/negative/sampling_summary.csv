@@ -1,0 +1,5 @@
+strategy,positives,negatives,candidate_recall_before_sampling,future_labels_used,empty_pool_fallback
+random_negative,8459,169180,0.5677181208053691,False,False
+exposed_low_watch_negative,8459,12347,0.5677181208053691,False,False
+retrieved_hard_negative,8459,169180,0.5677181208053691,False,False
+mixed_negative,8459,169180,0.5677181208053691,False,False

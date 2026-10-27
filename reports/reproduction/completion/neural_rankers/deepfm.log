@@ -1,0 +1,7 @@
+Epoch 01/10: train_loss=0.3883 val_auc=0.5191 val_logloss=0.1505
+Epoch 02/10: train_loss=0.1470 val_auc=0.5245 val_logloss=0.1280
+Epoch 03/10: train_loss=0.1175 val_auc=0.5198 val_logloss=0.1274
+Epoch 04/10: train_loss=0.1004 val_auc=0.5283 val_logloss=0.1160
+Epoch 05/10: train_loss=0.0876 val_auc=0.5215 val_logloss=0.1112
+Epoch 06/10: train_loss=0.0787 val_auc=0.5183 val_logloss=0.1015
+Saved best deepfm model to models/kuairec_completion/deepfm

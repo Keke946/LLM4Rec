@@ -1,0 +1,2 @@
+RUN ['/workspace/scratch/7b77a26676ec/.venv/bin/python', '-u', 'scripts/evaluate_completion.py', '--stage', 'business']
+Completion stage finished: business

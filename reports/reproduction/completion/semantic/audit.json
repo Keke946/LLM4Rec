@@ -1,0 +1,49 @@
+{
+  "caption_parser_repairs": [
+    {
+      "video_id": 1378,
+      "first_line": 1380,
+      "last_line": 1381,
+      "repair": "join unquoted caption newline; preserve remaining fields"
+    },
+    {
+      "video_id": 1613,
+      "first_line": 1616,
+      "last_line": 1617,
+      "repair": "join unquoted caption newline; preserve remaining fields"
+    },
+    {
+      "video_id": 5910,
+      "first_line": 5914,
+      "last_line": 5915,
+      "repair": "join unquoted caption newline; preserve remaining fields"
+    },
+    {
+      "video_id": 6331,
+      "first_line": 6336,
+      "last_line": 6337,
+      "repair": "join unquoted caption newline; preserve remaining fields"
+    }
+  ],
+  "caption_rows": 10728,
+  "caption_file_sha256": "08f6ec40059c5a7ecdcebf615d080d9cf8f59f9497f6d66e8d5ccabdc7cab2d9",
+  "caption_fields": [
+    "manual_cover_text",
+    "caption",
+    "topic_tag",
+    "first_level_category_name",
+    "second_level_category_name"
+  ],
+  "caption_coverage": 7483,
+  "normalized_embeddings": true,
+  "exact_inner_product_agreement_users": 5,
+  "saved_loaded_top100_match_users": 5,
+  "backend": "faiss",
+  "model_source": {
+    "repo_id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+    "local_path": "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/data/raw/semantic_encoder",
+    "license": "apache-2.0"
+  },
+  "catalog_assumption": "Transductive static captions; publication-time availability not modeled."
+}

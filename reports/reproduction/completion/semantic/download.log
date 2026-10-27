@@ -1,0 +1,9 @@
+Resolved revision e8f8c211226b894fcb81acc59f3b34ba3efd5f42
+
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]
+Fetching 12 files:   8%|▊         | 1/12 [00:02<00:31,  2.90s/it]
+Fetching 12 files:  33%|███▎      | 4/12 [00:02<00:04,  1.74it/s]
+Fetching 12 files:  33%|███▎      | 4/12 [00:20<00:04,  1.74it/s]
+Fetching 12 files:  42%|████▏     | 5/12 [00:20<00:36,  5.24s/it]
+Fetching 12 files: 100%|██████████| 12/12 [00:20<00:00,  1.69s/it]
+Downloaded /workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/data/raw/semantic_encoder

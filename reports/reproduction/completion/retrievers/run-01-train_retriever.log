@@ -1,0 +1,17 @@
+BPR epoch 01/10: loss=0.6844
+BPR epoch 02/10: loss=0.4078
+BPR epoch 03/10: loss=0.2838
+BPR epoch 04/10: loss=0.2409
+BPR epoch 05/10: loss=0.2105
+BPR epoch 06/10: loss=0.1886
+BPR epoch 07/10: loss=0.1692
+BPR epoch 08/10: loss=0.1586
+BPR epoch 09/10: loss=0.1487
+BPR epoch 10/10: loss=0.1392
+{
+  "val_recall@50": 0.013965393576945324,
+  "val_recall@100": 0.029883789409039976,
+  "val_recall@200": 0.05626851824585425,
+  "val_users": 918
+}
+Saved bpr retriever to models/kuairec_completion/retrievers/bpr

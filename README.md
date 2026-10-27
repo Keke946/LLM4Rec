@@ -57,25 +57,34 @@ Strict chronological test, 928 eligible users; Recall/NDCG/MRR are user-macro av
 | GBDT Top50 | 0.010793 | 0.010182 | 0.021441 | 0.094395 |
 | GBDT Top100 | 0.008848 | 0.010896 | 0.030040 | 0.094395 |
 | LambdaRank Top50 | 0.009253 | 0.010768 | 0.026188 | 0.094395 |
+| EmbeddingMLP Top50 | 0.014029 | 0.018058 | 0.050673 | 0.094395 |
+| DeepFM Top50 | 0.011514 | 0.011986 | 0.029372 | 0.094395 |
+| DIN Top50 | 0.011739 | 0.016961 | 0.050255 | 0.094395 |
 
 GBDT Top50 increases Recall@10 by 60.0% and NDCG@10 by 70.7% against the same retrieval pool. Trend candidate positive recall is 63.73%; 33.51% of eligible test positives have no positive training interaction, and none of these cold positives enter this pool. Head ordering helps; cold-item retrieval remains a separate bottleneck.
 
 ![Historical and strict ranking comparisons](reports/reproduction/ranking_comparison.png)
 
-Full metrics and historical differences are in the [reproduction report](reports/reproduction/REPRODUCTION_REPORT.md). All ranking experiments share the same candidate pool and eligibility policy within a protocol. Head reranking preserves Recall@100 by construction. Historical improvement percentages are retained as reference observations and are not treated as current verified claims.
+The additional fixed neural runs use validation-only early stopping and the same Trend candidate pool. Full/Top50/Top100 results, ten-epoch retriever checks, negative-sampling ablations, real caption/FAISS retrieval and business reranking are in the [module completion report](reports/reproduction/completion/COMPLETION_REPORT.md). Semantic retrieval is functional but weaker than Trend in this configuration; the diversity-tail variant adds no tail gain in the evaluated head.
+
+![Fixed neural head reranking](reports/reproduction/completion/neural_top50_comparison.png)
+
+Full baseline metrics and historical differences are in the [reproduction report](reports/reproduction/REPRODUCTION_REPORT.md). All ranking experiments share the same candidate pool and eligibility policy within a protocol. Head reranking preserves Recall@100 by construction. Historical improvement percentages are retained as reference observations and are not treated as current verified claims.
 
 ## Models and scope
 
 | Stage | Implementations | Verification evidence |
 |---|---|---|
 | Statistical / collaborative retrieval | Popular, Trend, ItemCF, ExposureQuality, Metadata | Real-data metrics and saved-artifact checks |
-| Neural retrieval | BPR-MF, TwoTower, LightGCN, SASRec | Fixed short-training verification; see module status |
-| Content retrieval | TF-IDF; optional SentenceTransformer / FAISS | TF-IDF verified; semantic backend requires optional packages |
+| Neural retrieval | BPR-MF, TwoTower, LightGCN, SASRec | Real ten-epoch training/test and saved-model checks |
+| Content retrieval | TF-IDF; multilingual SentenceTransformer / FAISS | Real official-caption verification; exact similarity and persistence checks |
 | Fusion | RRF and weighted RRF | Real-data candidate and ranking comparisons |
 | Tree ranking | HistGradientBoosting, LightGBM LambdaRank | Real train/val fitting; full, Top50 and Top100 test evaluation |
-| Neural ranking | EmbeddingMLP, DeepFM, DIN | Fixture training and inference; not a real-data quality claim |
-| Business reranking | Diversity and tail preference | Deterministic tests; separate from primary experiments |
+| Neural ranking | EmbeddingMLP, DeepFM, DIN | Real temporal train/val/test; full/Top50/Top100, public/API parity |
+| Business reranking | Diversity and tail preference | Real GBDT-head experiments; membership and metric checks |
 | Explanation | Template fallback and optional LLM guard | Offline guard tests; live API integration unverified |
+
+To reproduce the additional checks, see [completion commands](docs/COMPLETION_REPRODUCE.md). Live LLM APIs, GitHub upload and remote CI are deferred; actual Docker execution remains blocked by this host.
 
 For precise per-module labels, read [project status](docs/PROJECT_STATUS.md). The [repair log](docs/REPAIR_AND_REPRODUCTION_LOG.md) documents bugs, methodology changes and remaining limitations.
 
@@ -85,7 +94,7 @@ Recall, NDCG, MRR and MAP are computed against independent eligible test positiv
 
 Seen filtering removes **positive** train+val history, not all prior low-watch exposures. Unexposed candidates are not known dislikes. The global protocol eliminates cross-user future interaction leakage at the split boundaries; the per-user comparison does not. The catalog is transductive and assumed known: publication-time availability is not modeled. The subset contains highly active users and is exposure-biased. Results are single-seed offline measurements, without online A/B tests or significance claims.
 
-The raw adapter uses encrypted categories and placeholder titles, with absent authors/durations. The TF-IDF path is therefore a content-schema baseline rather than a validated video-semantic model. LLM checks reject detectable out-of-candidate IDs; they do not establish complete factual safety of arbitrary generated explanations.
+The base adapter uses encrypted categories and placeholder titles, with absent authors/durations. The semantic completion uses a separate official-caption view; the base TF-IDF results remain schema baselines. LLM checks reject detectable out-of-candidate IDs; they do not establish complete factual safety of arbitrary generated explanations.
 
 ## Repository
 

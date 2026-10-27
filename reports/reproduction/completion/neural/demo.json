@@ -1,0 +1,256 @@
+{
+  "user_id": "1028",
+  "ranker": "din",
+  "results": [
+    {
+      "item_id": "1288",
+      "title": "video_1288",
+      "score": 0.397332,
+      "rank": 1,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_1288》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.01509433962264151,
+        "ranker_score": -3.795240879058838,
+        "final_score": 0.3973322290508363,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "1445",
+      "title": "video_1445",
+      "score": 0.611415,
+      "rank": 2,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_1445》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.022857142857142857,
+        "ranker_score": -4.061988353729248,
+        "final_score": 0.6114145854021393,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "2612",
+      "title": "video_2612",
+      "score": 0.416436,
+      "rank": 3,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_2612》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.015841584158415842,
+        "ranker_score": -4.088789939880371,
+        "final_score": 0.41643580394255447,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "9115",
+      "title": "video_9115",
+      "score": 0.592893,
+      "rank": 4,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_9115》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.022222222222222223,
+        "ranker_score": -4.257116317749023,
+        "final_score": 0.5928931682951933,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "7820",
+      "title": "video_7820",
+      "score": 0.703857,
+      "rank": 5,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_7820》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.02622950819672131,
+        "ranker_score": -4.341067790985107,
+        "final_score": 0.7038565620791312,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "2894",
+      "title": "video_2894",
+      "score": 0.428814,
+      "rank": 6,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_2894》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.0163265306122449,
+        "ranker_score": -4.341489315032959,
+        "final_score": 0.42881445448020317,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "4689",
+      "title": "video_4689",
+      "score": 0.402592,
+      "rank": 7,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_4689》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.015384615384615385,
+        "ranker_score": -4.357846260070801,
+        "final_score": 0.40259240549215436,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "9234",
+      "title": "video_9234",
+      "score": 0.567747,
+      "rank": 8,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_9234》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.021333333333333336,
+        "ranker_score": -4.374607086181641,
+        "final_score": 0.5677469533602579,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "4205",
+      "title": "video_4205",
+      "score": 0.468812,
+      "rank": 9,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_4205》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.017777777777777778,
+        "ranker_score": -4.426105499267578,
+        "final_score": 0.4688116148216555,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    },
+    {
+      "item_id": "6346",
+      "title": "video_6346",
+      "score": 0.552124,
+      "rank": 10,
+      "retrieval_sources": [
+        "trend"
+      ],
+      "explanation": "《video_6346》和你的兴趣描述相近，因此推荐给你。",
+      "debug": {
+        "ranker": "din",
+        "candidate_pool_size": 1500,
+        "retrieval_sources": [
+          "trend"
+        ],
+        "retrieval_score": 0.02077922077922078,
+        "ranker_score": -4.43989372253418,
+        "final_score": 0.5521242493253291,
+        "rerank_mode": "ranker_top_50",
+        "business_reranker": "none",
+        "source_weights": {
+          "trend": 1.6
+        }
+      }
+    }
+  ]
+}

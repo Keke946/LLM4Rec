@@ -1,0 +1,4 @@
+Epoch 01/10: train_loss=0.0425 val_auc=0.5746 val_logloss=0.0305
+Epoch 02/10: train_loss=0.0336 val_auc=0.5737 val_logloss=0.0311
+Epoch 03/10: train_loss=0.0323 val_auc=0.5568 val_logloss=0.0336
+Saved best embedding_mlp model to models/kuairec_completion/embedding_mlp

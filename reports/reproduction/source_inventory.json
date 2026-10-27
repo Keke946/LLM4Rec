@@ -47,6 +47,14 @@
     ]
   },
   {
+    "file": "llm4rec/datasets/captions.py",
+    "lines": 31,
+    "classes": [],
+    "functions": [
+      "read_kuairec_captions"
+    ]
+  },
+  {
     "file": "llm4rec/datasets/kuairec.py",
     "lines": 164,
     "classes": [
@@ -89,7 +97,7 @@
   },
   {
     "file": "llm4rec/evaluation/evaluator.py",
-    "lines": 922,
+    "lines": 923,
     "classes": [
       "OfflineEvaluator"
     ],
@@ -186,6 +194,17 @@
     ]
   },
   {
+    "file": "llm4rec/features/tensor_samples.py",
+    "lines": 63,
+    "classes": [
+      "TensorRankingDataset",
+      "TensorBatchLoader"
+    ],
+    "functions": [
+      "candidate_tensors"
+    ]
+  },
+  {
     "file": "llm4rec/models.py",
     "lines": 47,
     "classes": [
@@ -204,12 +223,13 @@
   },
   {
     "file": "llm4rec/ranking/base.py",
-    "lines": 23,
+    "lines": 33,
     "classes": [
       "RankerConfig"
     ],
     "functions": [
-      "masked_mean"
+      "masked_mean",
+      "transform_dense"
     ]
   },
   {
@@ -288,7 +308,7 @@
   },
   {
     "file": "llm4rec/ranking/negative_sampling.py",
-    "lines": 304,
+    "lines": 305,
     "classes": [],
     "functions": [
       "positive_items_by_user",
@@ -308,7 +328,7 @@
   },
   {
     "file": "llm4rec/recommender.py",
-    "lines": 534,
+    "lines": 551,
     "classes": [
       "LLM4RecRecommender"
     ],
@@ -324,7 +344,7 @@
   },
   {
     "file": "llm4rec/rerank/business.py",
-    "lines": 63,
+    "lines": 65,
     "classes": [],
     "functions": [
       "apply_business_reranker",
@@ -362,7 +382,7 @@
   },
   {
     "file": "llm4rec/retrieval/content_faiss.py",
-    "lines": 227,
+    "lines": 237,
     "classes": [
       "ContentFaissRetriever"
     ],

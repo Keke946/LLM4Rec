@@ -1,0 +1,17 @@
+SASRec epoch 01/10: loss=0.3709
+SASRec epoch 02/10: loss=0.2620
+SASRec epoch 03/10: loss=0.2489
+SASRec epoch 04/10: loss=0.2345
+SASRec epoch 05/10: loss=0.2259
+SASRec epoch 06/10: loss=0.2213
+SASRec epoch 07/10: loss=0.2141
+SASRec epoch 08/10: loss=0.2126
+SASRec epoch 09/10: loss=0.2118
+SASRec epoch 10/10: loss=0.2030
+{
+  "val_recall@50": 0.048838208707943344,
+  "val_recall@100": 0.08293891219298764,
+  "val_recall@200": 0.1535216881635541,
+  "val_users": 918
+}
+Saved sasrec retriever to models/kuairec_completion/retrievers/sasrec

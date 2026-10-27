@@ -1,0 +1,21 @@
+{
+  "scope": "KuaiRec fixed-config modules",
+  "status": "all executable module checks passed",
+  "tests": 50,
+  "core_python_versions": [
+    "3.11",
+    "3.12"
+  ],
+  "semantic_environment_tests": true,
+  "core_smoke_both_versions": true,
+  "initial_artifacts_unchanged": true,
+  "real_api_order_match": true,
+  "explicitly_deferred": [
+    "live LLM API",
+    "GitHub upload",
+    "remote CI"
+  ],
+  "environment_blocked": [
+    "Docker actual build"
+  ]
+}

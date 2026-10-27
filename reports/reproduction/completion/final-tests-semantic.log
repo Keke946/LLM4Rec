@@ -1,0 +1,15 @@
+............................INFO:__main__:Saved retriever popular to /tmp/tmp9ik4l5ow/retrievers/popular
+INFO:__main__:Saved retriever itemcf to /tmp/tmp9ik4l5ow/retrievers/itemcf
+INFO:__main__:Wrote 10 rows for split=train
+INFO:__main__:Wrote 8 rows for split=val
+INFO:__main__:Wrote 6 rows for split=test
+Built candidate-level ranker samples at /tmp/tmp9ik4l5ow/features
+...........No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+...........
+----------------------------------------------------------------------
+Ran 50 tests in 8.359s
+
+OK
+BPR epoch 01/1: loss=0.6938
+TwoTower epoch 01/1: loss=0.8274
+LightGCN epoch 01/1: loss=0.6924

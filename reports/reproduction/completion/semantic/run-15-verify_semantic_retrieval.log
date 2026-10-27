@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/scripts/verify_semantic_retrieval.py", line 76, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/scratch/7b77a26676ec/project/LLM4Rec_resume_project_clean/scripts/verify_semantic_retrieval.py", line 29, in main
+    captions=pd.read_csv(raw).fillna('');captions['item_id']=captions.video_id.astype(str)
+             ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/7b77a26676ec/.venv-semantic/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/7b77a26676ec/.venv-semantic/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 626, in _read
+    return parser.read(nrows)
+           ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/7b77a26676ec/.venv-semantic/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/7b77a26676ec/.venv-semantic/lib/python3.11/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.

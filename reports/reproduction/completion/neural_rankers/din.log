@@ -1,0 +1,4 @@
+Epoch 01/10: train_loss=0.0404 val_auc=0.5837 val_logloss=0.0305
+Epoch 02/10: train_loss=0.0335 val_auc=0.5748 val_logloss=0.0312
+Epoch 03/10: train_loss=0.0322 val_auc=0.5590 val_logloss=0.0333
+Saved best din model to models/kuairec_completion/din

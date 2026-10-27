@@ -1,0 +1,8 @@
+{
+  "stage": "neural",
+  "independent_truth": true,
+  "injected_excluded": true,
+  "test_users": 928,
+  "predeclared_spec": "configs/kuairec_completion.yaml",
+  "head_recall100_preserved": true
+}

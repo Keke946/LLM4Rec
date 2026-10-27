@@ -1,0 +1,7 @@
+{
+  "docker_executable": null,
+  "docker_socket_exists": false,
+  "rootless_user_namespace_probe": "denied: uid_map write Operation not permitted",
+  "evidence": "docker-userns-check.log",
+  "actual_container_build_completed": false
+}
